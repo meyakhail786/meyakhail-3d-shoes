@@ -1,10 +1,1061 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MEYAKHAIL | Interactive Footwear</title><link rel="stylesheet" href="style.css"></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEYAKHAIL | Interactive Footwear</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --ink: #181818;
+  --muted: #8d8d89;
+  --paper: #fafaf8;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', Arial, sans-serif;
+}
+
+button, select { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+.shell {
+  min-height: 100vh;
+  max-width: 1720px;
+  margin: auto;
+}
+
+.nav {
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(24px, 5vw, 92px);
+  border-bottom: 1px solid #ededeb;
+}
+
+.brand {
+  font: 900 22px Montserrat, Arial;
+  letter-spacing: -1.6px;
+}
+
+.brand span {
+  font-size: 9px;
+  vertical-align: top;
+  margin-left: 3px;
+}
+
+.navlinks {
+  display: flex;
+  gap: 38px;
+  margin-left: 40px;
+}
+
+.navlinks a, .season, .cart {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  font-weight: 800;
+}
+
+.navlinks a { color: #aaa; }
+.navlinks a.active { color: #222; }
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.season { color: #a9aaa6; }
+
+.cart {
+  background: none;
+  border: 0;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.cart b {
+  background: #151515;
+  color: white;
+  padding: 7px 9px;
+  border-radius: 50%;
+  font-size: 10px;
+}
+
+.eyebrow {
+  margin-top: 59px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #959591;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.eyebrow .line {
+  width: 24px;
+  height: 1px;
+  background: #aaa;
+}
+
+h1 {
+  text-align: center;
+  font: 800 clamp(38px, 5.2vw, 85px)/1 Montserrat, Arial;
+  letter-spacing: -4.2px;
+  margin: 18px 0 13px;
+}
+
+.period { color: #b9cba6; }
+
+.subtitle {
+  text-align: center;
+  font-size: 13px;
+  color: #9b9b96;
+  margin: 0;
+}
+
+.stage {
+  height: clamp(360px, 37vw, 550px);
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+}
+
+.stage:active { cursor: grabbing; }
+
+.stage-floor {
+  position: absolute;
+  top: 30%;
+  left: 18%;
+  right: 18%;
+  height: 65%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(230,231,224,.55),
+    transparent 68%
+  );
+  pointer-events: none;
+}
+
+.shoe-rail {
+  position: absolute;
+  inset: 0;
+  perspective: 1300px;
+}
+
+.shoe {
+  position: absolute;
+  width: clamp(210px, 27vw, 425px);
+  height: 250px;
+  top: 38%;
+  left: 50%;
+  margin-left: calc(clamp(210px, 27vw, 425px) / -2);
+  transform-origin: center;
+  transition:
+    transform .72s cubic-bezier(.2,.8,.2,1),
+    opacity .6s,
+    filter .7s;
+  will-change: transform;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.shoe svg {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  overflow: visible;
+  filter: drop-shadow(2px 28px 14px rgba(25,25,25,.13));
+}
+
+.shoe.selected svg {
+  filter: drop-shadow(5px 30px 22px rgba(25,25,25,.16));
+}
+
+.focus-halo {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: 400px;
+  height: 220px;
+  transform: translate(-50%, -40%);
+  background: radial-gradient(
+    ellipse,
+    rgba(226,231,217,.31),
+    transparent 72%
+  );
+  z-index: -1;
+}
+
+.floor-line {
+  position: absolute;
+  bottom: 14%;
+  left: 9%;
+  right: 9%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #e6e6e2,
+    transparent
+  );
+}
+
+.hint {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  font-weight: 800;
+  color: #aaa;
+  letter-spacing: 2.5px;
+  white-space: nowrap;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.hint span {
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.arrow {
+  position: absolute;
+  top: 51%;
+  transform: translateY(-50%);
+  background: #fff9;
+  border: 1px solid #e4e4df;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 28px;
+  z-index: 25;
+}
+
+.arrow.prev { left: 4%; }
+.arrow.next { right: 4%; }
+
+.details {
+  margin: 0 auto 48px;
+  max-width: 1120px;
+  border-top: 1px solid #e8e8e4;
+  padding: 29px 4px;
+  display: flex;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.counter {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #aaa;
+  margin-bottom: 19px;
+}
+
+.product-type {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #b2b3ad;
+}
+
+.product-about h2 {
+  font: 800 clamp(25px, 2.4vw, 36px) Montserrat;
+  margin: 7px 0 10px;
+  letter-spacing: -1.5px;
+}
+
+.product-about p {
+  margin: 0;
+  color: #999;
+  font-size: 12px;
+}
+
+.product-buy { width: 360px; }
+
+.price {
+  text-align: right;
+  font: 800 22px Montserrat;
+  margin-bottom: 21px;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 50px 1fr 38px 125px;
+  align-items: center;
+  gap: 13px;
+}
+
+.options > span {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #aaa;
+}
+
+.swatches {
+  display: flex;
+  gap: 7px;
+}
+
+.swatch {
+  height: 19px;
+  width: 19px;
+  border-radius: 50%;
+  border: 2px solid white;
+  outline: 1px solid transparent;
+}
+
+.swatch.active { outline-color: #444; }
+
+select {
+  padding: 9px 4px;
+  border: 1px solid #e6e6e2;
+  background: transparent;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .6px;
+  color: #333;
+}
+
+.add {
+  width: 100%;
+  border: 0;
+  background: #1c1c1b;
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-align: left;
+  padding: 19px 24px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  transition: background .2s;
+}
+
+.add:hover { background: #46523c; }
+
+footer {
+  padding: 26px clamp(24px,5vw,92px);
+  border-top: 1px solid #e8e8e4;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #aaa;
+}
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translate(-50%,30px);
+  background: #161616;
+  color: #fff;
+  padding: 14px 25px;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: .35s;
+  z-index: 100;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%,0);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #0005;
+  z-index: 101;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+}
+
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bag-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: min(430px,100%);
+  background: white;
+  z-index: 102;
+  transform: translateX(100%);
+  transition: .35s;
+  padding: 27px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bag-panel.open { transform: translateX(0); }
+
+.bag-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.bag-head h2 { font: 800 19px Montserrat; }
+
+.bag-head button {
+  border: 0;
+  background: none;
+  font-size: 28px;
+}
+
+.bag-items {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 25px;
+  color: #777;
+  font-size: 13px;
+}
+
+.bag-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bag-item strong { color: #222; }
+
+.bag-foot {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 22px;
+  border-top: 1px solid #eee;
+  font-size: 12px;
+}
+
+.bag-foot strong {
+  font-size: 20px;
+  color: #222;
+}
+
+@media(max-width:760px) {
+  .nav {
+    height: 74px;
+    padding: 0 22px;
+  }
+
+  .brand { font-size: 19px; }
+  .navlinks, .season { display: none; }
+  .eyebrow { margin-top: 45px; }
+
+  h1 {
+    font-size: clamp(36px,9vw,55px);
+    letter-spacing: -2.5px;
+  }
+
+  .stage { height: 420px; }
+
+  .shoe {
+    top: 29%;
+    width: 270px;
+    margin-left: -135px;
+  }
+
+  .arrow {
+    width: 37px;
+    height: 37px;
+  }
+
+  .details {
+    margin: 0 22px 34px;
+    display: block;
+  }
+
+  .product-buy {
+    width: 100%;
+    margin-top: 23px;
+  }
+
+  .price { text-align: left; }
+
+  .options {
+    grid-template-columns: 46px 1fr 34px 115px;
+  }
+
+  footer {
+    padding: 25px 22px;
+    flex-wrap: wrap;
+  }
+
+  footer span:nth-child(2) { display: none; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *:before, *:after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
 <body>
+
 <div class="shell">
-<header class="nav"><a class="brand" href="#" aria-label="Meyakhail home">MEYAKHAIL<span>®</span></a><nav class="navlinks"><a class="active" href="#collection">COLLECTION</a><a href="#story">OUR STORY</a></nav><div class="right"><span class="season">NEW SEASON / 2026</span><button id="cartBtn" class="cart" aria-label="Open shopping bag">BAG <b id="cartCount">00</b></button></div></header>
-<main id="collection"><div class="eyebrow"><span class="line"></span> THE FOOTWEAR EDIT <span class="line"></span></div><h1>THE COLLECTION<span class="period">.</span></h1><p class="subtitle">A new perspective on everyday movement.</p>
-<div class="stage" id="stage" aria-label="Interactive shoe collection"><div class="stage-floor"></div><div class="shoe-rail" id="rail"></div><div class="focus-halo"></div><div class="floor-line"></div><div class="hint"><span>←</span> DRAG TO EXPLORE <span>→</span></div><button class="arrow prev" id="prev" aria-label="Previous shoe">‹</button><button class="arrow next" id="next" aria-label="Next shoe">›</button></div>
-<section class="details" id="details"><div class="product-about"><div class="counter" id="counter">01 / 06</div><div class="product-type" id="type">ESSENTIAL SERIES</div><h2 id="productName">URBAN RUNNER</h2><p id="description">Built for the rhythm of your day.</p></div><div class="product-buy"><div class="price" id="price">$ 129.00</div><div class="options"><span>COLOR</span><div class="swatches" id="swatches"></div><span>SIZE</span><select id="size" aria-label="Select shoe size"><option value="">SELECT SIZE</option><option>EU 39</option><option>EU 40</option><option>EU 41</option><option>EU 42</option><option>EU 43</option><option>EU 44</option></select></div><button class="add" id="add">ADD TO BAG <span>↗</span></button></div></section>
-</main><footer id="story"><span>MEYAKHAIL / DESIGNED TO MOVE</span><span>SCROLL LESS. EXPERIENCE MORE.</span><span>© 2026 MEYAKHAIL</span></footer>
-</div><div id="toast" class="toast" role="status"></div><aside id="bagPanel" class="bag-panel" aria-label="Shopping bag"><div class="bag-head"><h2>YOUR BAG</h2><button id="closeBag">×</button></div><div id="bagItems" class="bag-items">Your bag is empty.</div><div class="bag-foot"><span>SUBTOTAL</span><strong id="total">$0.00</strong></div></aside><div id="overlay" class="overlay"></div><script src="script.js"></script></body></html>
+
+<header class="nav">
+  <a class="brand" href="#">
+    MEYAKHAIL<span>®</span>
+  </a>
+
+  <nav class="navlinks">
+    <a class="active" href="#collection">COLLECTION</a>
+    <a href="#story">OUR STORY</a>
+  </nav>
+
+  <div class="right">
+    <span class="season">NEW SEASON / 2026</span>
+    <button id="cartBtn" class="cart">
+      BAG <b id="cartCount">00</b>
+    </button>
+  </div>
+</header>
+
+<main id="collection">
+
+<div class="eyebrow">
+  <span class="line"></span>
+  THE FOOTWEAR EDIT
+  <span class="line"></span>
+</div>
+
+<h1>THE COLLECTION<span class="period">.</span></h1>
+
+<p class="subtitle">
+  A new perspective on everyday movement.
+</p>
+
+<div class="stage" id="stage">
+  <div class="stage-floor"></div>
+  <div class="shoe-rail" id="rail"></div>
+  <div class="focus-halo"></div>
+  <div class="floor-line"></div>
+
+  <div class="hint">
+    <span>←</span>
+    DRAG TO EXPLORE
+    <span>→</span>
+  </div>
+
+  <button class="arrow prev" id="prev">‹</button>
+  <button class="arrow next" id="next">›</button>
+</div>
+
+<section class="details" id="details">
+
+  <div class="product-about">
+    <div class="counter" id="counter">01 / 06</div>
+    <div class="product-type" id="type">ESSENTIAL SERIES</div>
+    <h2 id="productName">URBAN RUNNER</h2>
+    <p id="description">
+      Built for the rhythm of your day.
+    </p>
+  </div>
+
+  <div class="product-buy">
+
+    <div class="price" id="price">$ 129.00</div>
+
+    <div class="options">
+      <span>COLOR</span>
+      <div class="swatches" id="swatches"></div>
+
+      <span>SIZE</span>
+      <select id="size">
+        <option value="">SELECT SIZE</option>
+        <option>EU 39</option>
+        <option>EU 40</option>
+        <option>EU 41</option>
+        <option>EU 42</option>
+        <option>EU 43</option>
+        <option>EU 44</option>
+      </select>
+    </div>
+
+    <button class="add" id="add">
+      ADD TO BAG <span>↗</span>
+    </button>
+
+  </div>
+</section>
+
+</main>
+
+<footer id="story">
+  <span>MEYAKHAIL / DESIGNED TO MOVE</span>
+  <span>SCROLL LESS. EXPERIENCE MORE.</span>
+  <span>© 2026 MEYAKHAIL</span>
+</footer>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<aside id="bagPanel" class="bag-panel">
+  <div class="bag-head">
+    <h2>YOUR BAG</h2>
+    <button id="closeBag">×</button>
+  </div>
+
+  <div id="bagItems" class="bag-items">
+    Your bag is empty.
+  </div>
+
+  <div class="bag-foot">
+    <span>SUBTOTAL</span>
+    <strong id="total">$0.00</strong>
+  </div>
+</aside>
+
+<div id="overlay" class="overlay"></div>
+
+<script>
+
+const products = [
+  {
+    name: 'URBAN RUNNER',
+    type: 'ESSENTIAL SERIES',
+    description: 'Built for the rhythm of your day.',
+    price: 129,
+    base: '#d5d8c9',
+    accent: '#a8b09a',
+    sole: '#f2f1e9',
+    details: '#f8f8f3',
+    colors: ['#d5d8c9','#25272a','#e7ab75']
+  },
+  {
+    name: 'VELOCITY 01',
+    type: 'PERFORMANCE SERIES',
+    description: 'The next step begins here.',
+    price: 159,
+    base: '#c8d7db',
+    accent: '#7c98a6',
+    sole: '#f5f6f2',
+    details: '#e9eff1',
+    colors: ['#c8d7db','#20272d','#ee7955']
+  },
+  {
+    name: 'NIGHT SHIFT',
+    type: 'STREET SERIES',
+    description: 'Made to stand out after dark.',
+    price: 145,
+    base: '#272a2d',
+    accent: '#6b757a',
+    sole: '#e4e3df',
+    details: '#a7acaa',
+    colors: ['#272a2d','#bfc7bb','#99604c']
+  },
+  {
+    name: 'BOLD MOTION',
+    type: 'LIMITED EDITION',
+    description: 'Move differently. Feel everything.',
+    price: 179,
+    base: '#e7a15d',
+    accent: '#a44c36',
+    sole: '#efece1',
+    details: '#f3c798',
+    colors: ['#e7a15d','#a1a5bd','#505f5a']
+  },
+  {
+    name: 'TERRAIN LOW',
+    type: 'OUTDOOR SERIES',
+    description: 'Confidence on every surface.',
+    price: 169,
+    base: '#8c9778',
+    accent: '#525b45',
+    sole: '#e4dbc7',
+    details: '#c2c9aa',
+    colors: ['#8c9778','#bda18d','#303a40']
+  },
+  {
+    name: 'CLOUD WALK',
+    type: 'EVERYDAY SERIES',
+    description: 'Light by design. Effortless by nature.',
+    price: 139,
+    base: '#e6ddd2',
+    accent: '#b9ada1',
+    sole: '#fafaf5',
+    details: '#ffffff',
+    colors: ['#e6ddd2','#d9c5de','#a6c7c2']
+  }
+];
+
+const rail = document.querySelector('#rail');
+const nameEl = document.querySelector('#productName');
+const typeEl = document.querySelector('#type');
+const descEl = document.querySelector('#description');
+const priceEl = document.querySelector('#price');
+const counterEl = document.querySelector('#counter');
+const swatchesEl = document.querySelector('#swatches');
+
+let selected = 2;
+let variants = {};
+let bag = [];
+
+function svgShoe(p, i) {
+  let b = variants[i] || p.base;
+
+  return `
+  <svg viewBox="0 0 560 320"
+       role="img"
+       aria-label="${p.name} shoe"
+       xmlns="http://www.w3.org/2000/svg">
+
+    <defs>
+      <linearGradient id="body${i}" x1=".14" y1="0" x2=".85" y2="1">
+        <stop stop-color="${p.details}"/>
+        <stop offset=".45" stop-color="${b}"/>
+        <stop offset="1" stop-color="${p.accent}"/>
+      </linearGradient>
+
+      <linearGradient id="sole${i}" x1="0" y1="0" x2="0" y2="1">
+        <stop stop-color="${p.sole}"/>
+        <stop offset="1" stop-color="#a5a59b"/>
+      </linearGradient>
+
+      <pattern id="mesh${i}"
+               width="8"
+               height="8"
+               patternUnits="userSpaceOnUse">
+        <path d="M0 8L8 0 M-2 2L2 -2"
+              stroke="#fff"
+              opacity=".16"
+              stroke-width="1.5"/>
+      </pattern>
+    </defs>
+
+    <ellipse cx="283" cy="275"
+             rx="224" ry="17"
+             fill="#000" opacity=".07"/>
+
+    <g transform="rotate(-7 275 160)">
+
+      <path d="M47 192 C68 182 92 183 118 169
+               L170 98 C195 79 217 86 243 104
+               L292 149 C322 167 364 168 393 169
+               L489 179 Q519 183 525 207
+               L521 238 Q514 260 478 261
+               L117 258 C88 256 67 246 49 234
+               Q31 217 47 192Z"
+            fill="url(#body${i})"
+            stroke="#64645d"
+            stroke-opacity=".25"
+            stroke-width="3"/>
+
+      <path d="M77 180L170 96
+               Q195 79 219 99
+               L251 125 L195 190 L85 210Z"
+            fill="${p.accent}"
+            opacity=".85"/>
+
+      <path d="M199 115Q236 95 266 143
+               L313 167L258 211L181 175Z"
+            fill="${b}"/>
+
+      <path d="M199 115Q236 95 266 143
+               L313 167L258 211L181 175Z"
+            fill="url(#mesh${i})"/>
+
+      <path d="M112 173Q149 168 195 191
+               Q224 208 274 192
+               Q332 172 405 184"
+            fill="none"
+            stroke="${p.details}"
+            stroke-width="9"
+            stroke-linecap="round"
+            opacity=".85"/>
+
+      <path d="M278 174L319 155L361 181L392 184"
+            stroke="${p.accent}"
+            stroke-width="26"
+            fill="none"
+            stroke-linejoin="round"
+            opacity=".7"/>
+
+      <path d="M276 177L324 176L355 194"
+            stroke="${p.details}"
+            stroke-width="8"
+            fill="none"
+            stroke-linecap="round"/>
+
+      <path d="M42 212Q61 226 125 225
+               L423 224Q491 222 523 206
+               L525 238Q508 270 449 269
+               L115 269Q63 269 42 246Z"
+            fill="url(#sole${i})"
+            stroke="#99988e"
+            stroke-width="2"/>
+
+      <path d="M54 250Q85 272 140 271
+               L450 272Q503 270 519 246"
+            fill="none"
+            stroke="#5f5e56"
+            stroke-width="8"/>
+
+      <path d="M78 254L477 254"
+            stroke="#fff"
+            stroke-opacity=".7"
+            stroke-width="3"/>
+
+      <path d="M222 143L276 154
+               M213 155L263 168
+               M204 167L251 182
+               M195 178L238 195"
+            stroke="${p.details}"
+            stroke-width="7"
+            stroke-linecap="round"/>
+
+      <path d="M220 141L274 153
+               M210 153L261 167
+               M201 165L248 180"
+            stroke="#777"
+            stroke-opacity=".2"
+            stroke-width="1.7"/>
+
+      <path d="M92 176L112 147"
+            stroke="${p.details}"
+            stroke-width="6"/>
+
+      <path d="M91 182L106 184"
+            stroke="#ffffff"
+            stroke-opacity=".7"
+            stroke-width="4"/>
+
+      <path d="M422 176Q475 172 494 186"
+            fill="none"
+            stroke="${p.details}"
+            stroke-width="5"
+            stroke-linecap="round"/>
+
+      <text x="370" y="213"
+            font-size="12"
+            font-family="Arial"
+            font-weight="bold"
+            fill="#fff"
+            letter-spacing="3">M.</text>
+
+    </g>
+  </svg>`;
+}
+
+function render() {
+
+  rail.innerHTML = products.map((p, i) => `
+    <div class="shoe"
+         data-index="${i}"
+         aria-label="View ${p.name}">
+      ${svgShoe(p, i)}
+    </div>
+  `).join('');
+
+  const nodes = [...document.querySelectorAll('.shoe')];
+
+  nodes.forEach((el, i) => {
+    let delta = i - selected;
+    let abs = Math.abs(delta);
+
+    el.style.transform = `
+      translate3d(
+        calc(${delta} * min(20vw, 280px)),
+        ${abs * 16}px,
+        ${-abs * 85}px
+      )
+      rotateY(${-delta * 13}deg)
+      rotateZ(${delta * 2}deg)
+      scale(${Math.max(.53, 1 - abs * .18)})
+    `;
+
+    el.style.opacity = abs > 3 ? 0 : Math.max(.23, 1 - abs * .23);
+    el.style.filter = abs ? 'saturate(.65)' : 'none';
+    el.style.zIndex = 20 - abs;
+    el.classList.toggle('selected', i === selected);
+
+    el.addEventListener('click', () => choose(i));
+  });
+
+  let p = products[selected];
+
+  nameEl.textContent = p.name;
+  typeEl.textContent = p.type;
+  descEl.textContent = p.description;
+  priceEl.textContent = `$ ${p.price.toFixed(2)}`;
+
+  counterEl.textContent =
+    `${String(selected + 1).padStart(2, '0')} / ` +
+    `${String(products.length).padStart(2, '0')}`;
+
+  swatchesEl.innerHTML = p.colors.map((c, i) => `
+    <button class="swatch ${
+      c === (variants[selected] || p.base) ? 'active' : ''
+    }"
+    style="background:${c}"
+    aria-label="Color ${i + 1}"
+    data-color="${c}">
+    </button>
+  `).join('');
+
+  swatchesEl.querySelectorAll('button').forEach(b => {
+    b.onclick = () => {
+      variants[selected] = b.dataset.color;
+      render();
+    };
+  });
+}
+
+function choose(i) {
+  selected = (i + products.length) % products.length;
+  render();
+}
+
+document.querySelector('#prev').onclick =
+  () => choose(selected - 1);
+
+document.querySelector('#next').onclick =
+  () => choose(selected + 1);
+
+window.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') choose(selected - 1);
+  if (e.key === 'ArrowRight') choose(selected + 1);
+});
+
+let start = null;
+const stage = document.querySelector('#stage');
+
+stage.addEventListener('pointerdown', e => {
+  start = e.clientX;
+});
+
+stage.addEventListener('pointerup', e => {
+  if (start !== null && Math.abs(e.clientX - start) > 40) {
+    choose(selected + (e.clientX < start ? 1 : -1));
+  }
+  start = null;
+});
+
+const toast = document.querySelector('#toast');
+let timer;
+
+function notify(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(timer);
+  timer = setTimeout(() => toast.classList.remove('show'), 2600);
+}
+
+document.querySelector('#add').onclick = () => {
+
+  let size = document.querySelector('#size').value;
+
+  if (!size) {
+    notify('Please select a size first.');
+    return;
+  }
+
+  bag.push({
+    name: products[selected].name,
+    price: products[selected].price,
+    size
+  });
+
+  document.querySelector('#cartCount').textContent =
+    String(bag.length).padStart(2, '0');
+
+  notify(`${products[selected].name} added to your bag`);
+
+  updateBag();
+};
+
+const panel = document.querySelector('#bagPanel');
+const overlay = document.querySelector('#overlay');
+
+function openBag(open) {
+  panel.classList.toggle('open', open);
+  overlay.classList.toggle('open', open);
+}
+
+document.querySelector('#cartBtn').onclick =
+  () => openBag(true);
+
+document.querySelector('#closeBag').onclick =
+  () => openBag(false);
+
+overlay.onclick = () => openBag(false);
+
+function updateBag() {
+
+  document.querySelector('#bagItems').innerHTML = bag.length
+    ? bag.map((p, i) => `
+      <div class="bag-item">
+        <div>
+          <strong>${p.name}</strong>
+          <p>${p.size}</p>
+        </div>
+        <div>
+          $${p.price.toFixed(2)}
+          <br>
+          <button
+            style="border:0;background:none;text-decoration:underline;color:#888"
+            onclick="removeItem(${i})">
+            Remove
+          </button>
+        </div>
+      </div>
+    `).join('')
+    : 'Your bag is empty.';
+
+  document.querySelector('#total').textContent =
+    '$' + bag.reduce((s, p) => s + p.price, 0).toFixed(2);
+}
+
+window.removeItem = i => {
+  bag.splice(i, 1);
+
+  document.querySelector('#cartCount').textContent =
+    String(bag.length).padStart(2, '0');
+
+  updateBag();
+};
+
+render();
+
+</script>
+</body>
+</html>
