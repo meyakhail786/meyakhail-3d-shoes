@@ -1,1381 +1,1448 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f5f5f1">
-<meta name="description" content="MEYAKHAIL interactive footwear studio.">
-<title>MEYAKHAIL® | The Footwear Studio</title>
+<title>Meyakhail Skechers | Premium Footwear</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#f5f5f1;
-  --ink:#20211f;
-  --muted:#8d908a;
-  --line:#dedfd8;
-  --acid:#d5f36a;
-  --surface:#fff;
-  --max:1540px;
+:root {
+  --bg: #f6f4ef;
+  --dark: #1d241d;
+  --green: #53694e;
+  --accent: #cbe971;
+  --muted: #8e9289;
+  --line: #e1e1da;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--ink);
-  font-family:'DM Sans',Arial,sans-serif;
-  -webkit-font-smoothing:antialiased;
-}
-button,input,select{font:inherit}
-button{cursor:pointer}
-a{text-decoration:none;color:inherit}
-button:focus-visible,a:focus-visible,select:focus-visible{
-  outline:3px solid #7d9d27;
-  outline-offset:3px;
-}
-::selection{background:var(--acid);color:var(--ink)}
 
-.site{
-  min-height:100svh;
-  overflow:hidden;
-  position:relative;
-}
-.noise{
-  pointer-events:none;
-  position:fixed;
-  inset:0;
-  z-index:20;
-  opacity:.09;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.12' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.topbar{
-  height:35px;
-  background:#20211f;
-  color:#e6e7db;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:13px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  font-size:9px;
-  font-weight:700;
-}
-.topbar .dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:var(--acid);
-}
-.header{
-  height:86px;
-  max-width:var(--max);
-  margin:auto;
-  padding:0 clamp(24px,4.7vw,78px);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:relative;
-  z-index:4;
-}
-.logo{
-  font-family:'Space Grotesk',sans-serif;
-  font-size:28px;
-  letter-spacing:-.095em;
-  font-weight:700;
-  line-height:1;
-}
-.logo sup{
-  font-size:11px;
-  letter-spacing:0;
-  position:relative;
-  top:-10px;
-  margin-left:3px;
-}
-.menu{
-  display:flex;
-  gap:40px;
-  align-items:center;
-}
-.menu a{
-  text-transform:uppercase;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.15em;
-  color:#74786f;
-  transition:color .2s;
-}
-.menu a.active,.menu a:hover{color:#161817}
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:22px;
-}
-.season{
-  font-size:10px;
-  color:var(--muted);
-  font-weight:700;
-  letter-spacing:.14em;
-}
-.icon-button{
-  border:1px solid var(--line);
-  background:transparent;
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  color:var(--ink);
-  transition:background .2s;
-}
-.icon-button:hover{background:var(--acid)}
-.bag-button{
-  border:0;
-  background:transparent;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.11em;
-}
-.bag-count{
-  background:#20211f;
-  color:#fff;
-  padding:7px 9px;
-  border-radius:50%;
-  font-size:10px;
-}
-main{
-  max-width:var(--max);
-  margin:0 auto;
-}
-.intro{
-  text-align:center;
-  padding:37px 20px 0;
-}
-.kicker{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:13px;
-  text-transform:uppercase;
-  letter-spacing:.24em;
-  font-size:10px;
-  font-weight:700;
-  color:#777d72;
-}
-.kicker:before,.kicker:after{
-  content:'';
-  width:33px;
-  height:1px;
-  background:#a7aba3;
-}
-.intro h1{
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:700;
-  letter-spacing:-.075em;
-  font-size:clamp(48px,7.5vw,112px);
-  margin:10px 0 -2px;
-  line-height:1.05;
-}
-.intro h1 em{
-  font-style:normal;
-  color:#aab894;
-}
-.intro p{
-  margin:17px 0 0;
-  color:#8b8e86;
-  font-size:13px;
-  letter-spacing:.025em;
-}
-.stage-wrap{
-  position:relative;
-  margin:0 auto;
-  min-height:450px;
-  height:clamp(460px,43vw,630px);
-  max-height:68vh;
-  overflow:hidden;
-}
-.stage-wrap:before{
-  content:'';
-  position:absolute;
-  top:12%;
-  left:15%;
-  right:15%;
-  height:72%;
-  background:radial-gradient(ellipse at center,#edf0e8 0,transparent 69%);
-  pointer-events:none;
-}
-.stage-wrap:after{
-  content:'';
-  position:absolute;
-  left:5%;
-  right:5%;
-  bottom:14%;
-  height:1px;
-  background:linear-gradient(90deg,transparent,#cbd0c4,transparent);
-  pointer-events:none;
-}
-.series-marker{
-  position:absolute;
-  top:28px;
-  left:clamp(25px,5vw,90px);
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.17em;
-  color:#969b90;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.series-marker:before{
-  content:'';
-  height:7px;
-  width:7px;
-  background:#81946b;
-  border-radius:50%;
-}
-.vertical-label{
-  position:absolute;
-  right:clamp(18px,3vw,50px);
-  top:20%;
-  writing-mode:vertical-rl;
-  font-size:10px;
-  letter-spacing:.21em;
-  color:#a3a79f;
-  font-weight:700;
-}
-.carousel{
-  position:absolute;
-  inset:0;
-  perspective:1600px;
-  touch-action:pan-y;
-  cursor:grab;
-}
-.carousel.grabbing{cursor:grabbing}
-.product-card{
-  position:absolute;
-  left:50%;
-  top:49%;
-  width:clamp(190px,25vw,365px);
-  height:clamp(235px,29vw,395px);
-  transform-style:preserve-3d;
-  transform-origin:center;
-  transition:transform .75s cubic-bezier(.17,.82,.18,1),opacity .5s,filter .5s;
-  display:grid;
-  place-items:center;
-  will-change:transform;
-  outline:none;
-}
-.product-card:focus-visible .photo{
-  outline:3px solid #839e42;
-  outline-offset:5px;
-}
-.product-card:not(.current){filter:saturate(.83)}
-.photo{
-  width:100%;
-  height:100%;
-  position:relative;
-  border-radius:170px 170px 38px 38px;
-  overflow:hidden;
-  background:var(--product-bg);
-  box-shadow:0 20px 60px rgba(33,38,28,.09),inset 0 0 1px #fff6;
-}
-.photo:before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(145deg,#ffffff4d,transparent 38%,#00000009);
-  z-index:1;
-  pointer-events:none;
-}
-.photo img{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  mix-blend-mode:multiply;
-  transition:transform .8s cubic-bezier(.16,.83,.16,1);
-}
-.current .photo img{transform:scale(1.045)}
-.photo .fallback{
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  font-size:10px;
-  letter-spacing:.13em;
-  font-weight:700;
-  color:#50544c;
-  padding:35px;
-}
-.photo img.loaded + .fallback{display:none}
-.photo-code{
-  position:absolute;
-  left:20px;
-  bottom:20px;
-  z-index:2;
-  font-weight:700;
-  font-size:9px;
-  letter-spacing:.16em;
-  opacity:.74;
-}
-.photo-arrow{
-  position:absolute;
-  right:19px;
-  bottom:18px;
-  z-index:2;
-  width:29px;
-  height:29px;
-  background:#fff9;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  font-size:19px;
-  opacity:0;
-  transition:opacity .2s;
-}
-.current .photo-arrow{opacity:1}
-.card-shadow{
-  width:75%;
-  height:30px;
-  border-radius:50%;
-  position:absolute;
-  bottom:-36px;
-  background:#29372a24;
-  filter:blur(16px);
-  transform:translateZ(-50px);
-}
-.tag{
-  position:absolute;
-  top:12px;
-  right:15px;
-  background:#fffbe8e6;
-  font-size:9px;
-  letter-spacing:.1em;
-  font-weight:700;
-  border-radius:30px;
-  padding:8px 12px;
-  z-index:2;
-}
-.stage-control{
-  position:absolute;
-  top:47%;
-  transform:translateY(-50%);
-  width:54px;
-  height:54px;
-  border:1px solid #d7dbd2;
-  background:#ffffffaa;
-  border-radius:50%;
-  font-size:26px;
-  z-index:3;
-  transition:background .2s,transform .2s;
-}
-.stage-control:hover{
-  background:var(--acid);
-  transform:translateY(-50%) scale(1.04);
-}
-.stage-control.prev{left:clamp(17px,3.5vw,54px)}
-.stage-control.next{right:clamp(17px,3.5vw,54px)}
-.stage-bottom{
-  position:absolute;
-  bottom:24px;
-  left:0;
-  right:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:26px;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.23em;
-  color:#939890;
-}
-.stage-bottom b{font-weight:700;color:#20211f}
-.stage-bottom .hr{
-  height:1px;
-  width:34px;
-  background:#9da49a;
-}
-.dots{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.dots button{
-  padding:0;
-  border:0;
-  width:5px;
-  height:5px;
-  background:#b8bcb3;
-  border-radius:20px;
-  transition:width .3s,background .3s;
-}
-.dots button.on{
-  background:#333a2d;
-  width:23px;
-}
-.details{
-  max-width:calc(var(--max) - 150px);
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:1fr 420px;
-  gap:70px;
-  padding:26px 14px 44px;
-  border-top:1px solid var(--line);
-  min-height:230px;
-}
-.detail-eyebrow{
-  font-size:10px;
-  color:#9ca399;
-  font-weight:700;
-  letter-spacing:.2em;
-}
-.detail-name{
-  margin:13px 0 8px;
-  font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(35px,3.9vw,59px);
-  line-height:1.04;
-  letter-spacing:-.065em;
-}
-.detail-copy{
-  color:#838980;
-  font-size:13px;
-  line-height:1.7;
-  max-width:460px;
-  margin:0;
-}
-.detail-features{
-  display:flex;
-  gap:22px;
-  margin-top:22px;
-}
-.detail-features span{
-  font-size:10px;
-  color:#888e83;
-  letter-spacing:.06em;
-}
-.detail-features strong{color:#535d4b}
-.purchase{padding-top:5px}
-.price{
-  font-family:'Space Grotesk',sans-serif;
-  font-size:30px;
-  font-weight:700;
-  letter-spacing:-.07em;
-  text-align:right;
-  margin-bottom:23px;
-}
-.selectors{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  justify-content:flex-end;
-}
-.selector-label{
-  font-size:10px;
-  color:#90968a;
-  font-weight:700;
-  letter-spacing:.15em;
-}
-.swatches{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-right:24px;
-}
-.swatch{
-  width:22px;
-  height:22px;
-  border:2px solid var(--bg);
-  border-radius:50%;
-  outline:1px solid transparent;
-  transition:transform .15s;
-}
-.swatch.selected{
-  outline-color:#333;
-  transform:scale(1.08);
-}
-.selectors select{
-  border:1px solid #d7dad0;
-  background:#fdfdfb;
-  padding:12px 14px;
-  width:138px;
-  font-size:10px;
-  letter-spacing:.07em;
-  font-weight:700;
-  color:#323631;
-  border-radius:3px;
-}
-.buy-button{
-  margin-top:18px;
-  background:#20221f;
-  color:#fff;
-  border:0;
-  width:100%;
-  min-height:60px;
-  padding:0 22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  text-transform:uppercase;
-  letter-spacing:.17em;
-  font-size:11px;
-  font-weight:700;
-  transition:background .2s,color .2s;
-}
-.buy-button:hover{
-  background:var(--acid);
-  color:#1e221b;
-}
-.trust{
-  margin-top:12px;
-  text-align:right;
-  font-size:10px;
-  color:#9aa095;
-  letter-spacing:.04em;
-}
-.lower{
-  background:#e9ece4;
-  margin-top:15px;
-  padding:36px clamp(25px,5vw,80px);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-}
-.lower strong{
-  font-family:'Space Grotesk',sans-serif;
-  font-size:24px;
-  letter-spacing:-.05em;
-}
-.lower p{
-  font-size:12px;
-  color:#7a8075;
-  max-width:390px;
-}
-.lower a{
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.13em;
-  border-bottom:1px solid #67765a;
-  padding-bottom:8px;
-  white-space:nowrap;
-}
-.footer{
-  border-top:1px solid #dee1d9;
-  padding:25px clamp(25px,5vw,80px);
-  max-width:var(--max);
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  font-size:10px;
-  color:#969c91;
-  letter-spacing:.13em;
-  font-weight:700;
-}
-.backdrop{
-  position:fixed;
-  inset:0;
-  background:#13171091;
-  z-index:30;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .3s;
-}
-.backdrop.open{
-  opacity:1;
-  pointer-events:auto;
-}
-.drawer{
-  position:fixed;
-  right:0;
-  top:0;
-  height:100dvh;
-  width:min(480px,100%);
-  z-index:31;
-  background:#f8f9f4;
-  padding:30px;
-  transform:translateX(105%);
-  transition:transform .42s cubic-bezier(.2,.8,.2,1);
-  display:flex;
-  flex-direction:column;
-  box-shadow:-20px 0 50px #0002;
-}
-.drawer.open{transform:translateX(0)}
-.drawer-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid #dfe2da;
-  padding-bottom:18px;
-}
-.drawer-head h2{
-  font:700 28px 'Space Grotesk';
-  letter-spacing:-.06em;
-  margin:0;
-}
-.drawer-head button,.zoom-close{
-  border:0;
-  background:transparent;
-  font-size:30px;
-  line-height:1;
-}
-.bag-list{
-  flex:1;
-  overflow:auto;
-  padding:15px 0;
-}
-.empty{
-  text-align:center;
-  margin-top:35%;
-  color:#929a8c;
-  font-size:13px;
-}
-.bag-row{
-  display:grid;
-  grid-template-columns:73px 1fr auto;
-  gap:15px;
-  align-items:center;
-  padding:14px 0;
-  border-bottom:1px solid #e5e7df;
-}
-.bag-row img{
-  width:73px;
-  height:85px;
-  object-fit:cover;
-  border-radius:30px 30px 10px 10px;
-}
-.bag-row h3{
-  font:700 14px 'Space Grotesk';
-  margin:0 0 7px;
-}
-.bag-row p{
-  margin:0;
-  color:#8a9185;
-  font-size:11px;
-}
-.bag-row button{
-  background:transparent;
-  border:0;
-  color:#777;
-  font-size:11px;
-  text-decoration:underline;
-  margin-top:9px;
-  padding:0;
-}
-.bag-row strong{font-size:13px}
-.drawer-foot{
-  border-top:1px solid #dfe2da;
-  padding-top:18px;
-}
-.total-row{
-  display:flex;
-  justify-content:space-between;
-  font-size:13px;
-  font-weight:700;
-}
-.total-row strong{
-  font:700 25px 'Space Grotesk';
-}
-.checkout{
-  background:#20221f;
-  color:#fff;
-  border:0;
-  width:100%;
-  padding:18px;
-  margin-top:20px;
-  text-transform:uppercase;
-  font-size:11px;
-  letter-spacing:.17em;
-  font-weight:700;
-}
-.checkout-note{
-  font-size:11px;
-  color:#969b92;
-  line-height:1.5;
-  margin-top:12px;
-}
-.zoom{
-  position:fixed;
-  inset:0;
-  z-index:32;
-  background:#ecefe7;
-  display:none;
-  place-items:center;
-  padding:35px;
-}
-.zoom.open{display:grid}
-.zoom-close{
-  position:absolute;
-  right:35px;
-  top:28px;
-  font-size:40px;
-}
-.zoom figure{
-  margin:0;
-  display:grid;
-  justify-items:center;
-  width:min(860px,90vw);
-}
-.zoom img{
-  width:100%;
-  height:min(65vh,650px);
-  object-fit:contain;
-  border-radius:12px;
-  filter:drop-shadow(0 20px 24px #0002);
-}
-.zoom figcaption{
-  margin-top:12px;
-  font:700 17px 'Space Grotesk';
-}
-.zoom small{
-  font-size:10px;
-  color:#92978d;
-  letter-spacing:.2em;
-  margin-top:7px;
-}
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:25px;
-  z-index:60;
-  background:#22271e;
-  color:white;
-  padding:14px 24px;
-  transform:translate(-50%,30px);
-  opacity:0;
-  pointer-events:none;
-  transition:.3s;
-  font-size:12px;
-  min-width:200px;
-  text-align:center;
-}
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
-@media(max-width:900px){
-  .menu{gap:17px}
-  .season{display:none}
-  .details{
-    margin:0 24px;
-    gap:24px;
-    grid-template-columns:1fr 345px;
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--dark);
+  font-family: Manrope, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+button, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.announcement {
+  height: 35px;
+  background: var(--dark);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+header {
+  max-width: 1500px;
+  height: 85px;
+  margin: auto;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+}
+
+.logo small {
+  font-size: 9px;
+  vertical-align: top;
+}
+
+.logo span {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--green);
+}
+
+nav {
+  display: flex;
+  gap: 35px;
+}
+
+nav a {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.cart-button {
+  background: transparent;
+  border: 0;
+  font-weight: 800;
+}
+
+.cart-count {
+  background: var(--dark);
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+
+.hero {
+  max-width: 1500px;
+  margin: auto;
+  text-align: center;
+  padding-top: 55px;
+  overflow: hidden;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--green);
+  font-weight: 800;
+}
+
+.hero h1 {
+  font-size: clamp(55px, 8vw, 120px);
+  font-weight: 800;
+  letter-spacing: -7px;
+  margin: 20px 0 10px;
+  line-height: 1;
+}
+
+.hero h1 span {
+  color: #b6c4a4;
+}
+
+.hero-description {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.showcase {
+  position: relative;
+  height: 550px;
+  margin-top: 20px;
+  overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.showcase:active {
+  cursor: grabbing;
+}
+
+.showcase::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  left: 15%;
+  top: 10%;
+  background: radial-gradient(
+    ellipse,
+    #dfe7d2,
+    transparent 70%
+  );
+  filter: blur(25px);
+}
+
+.shoe-container {
+  position: absolute;
+  inset: 0;
+  perspective: 1300px;
+}
+
+.shoe-item {
+  position: absolute;
+  width: 320px;
+  height: 350px;
+  top: 45%;
+  left: 50%;
+  transform-origin: center;
+  transition:
+    transform .8s cubic-bezier(.22,1,.36,1),
+    opacity .7s,
+    filter .7s;
+  will-change: transform;
+  cursor: pointer;
+}
+
+.shoe-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 45% 45% 25px 25px;
+  overflow: hidden;
+  background: var(--tone);
+  box-shadow: 0 25px 55px #00000018;
+}
+
+.shoe-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  transition: transform .6s;
+}
+
+.shoe-item.selected img {
+  transform: scale(1.08);
+}
+
+.shoe-item.selected .shoe-card {
+  box-shadow: 0 35px 75px #00000025;
+}
+
+.shoe-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 8px 13px;
+  background: #ffffffcc;
+  border-radius: 30px;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.shoe-code {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.arrow {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  background: #ffffffdd;
+  font-size: 27px;
+  z-index: 50;
+}
+
+.arrow:hover {
+  background: var(--accent);
+}
+
+.prev {
+  left: 4%;
+}
+
+.next {
+  right: 4%;
+}
+
+.drag-hint {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--muted);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.product-details {
+  max-width: 1300px;
+  margin: auto;
+  padding: 35px 20px 70px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 60px;
+}
+
+.product-number,
+.product-series {
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 800;
+  color: #9aa298;
+}
+
+.product-series {
+  margin-top: 18px;
+}
+
+.product-details h2 {
+  font-size: clamp(35px, 4vw, 60px);
+  letter-spacing: -3px;
+  margin: 10px 0;
+}
+
+.product-description {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.price {
+  font-size: 30px;
+  font-weight: 800;
+  text-align: right;
+  margin-bottom: 25px;
+}
+
+.product-options {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.product-options label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+.colors {
+  display: flex;
+  gap: 8px;
+  margin-right: 20px;
+}
+
+.color {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  outline: 1px solid transparent;
+}
+
+.color.active {
+  outline-color: var(--dark);
+}
+
+select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  background: white;
+  font-size: 11px;
+  width: 140px;
+}
+
+.add-button {
+  width: 100%;
+  height: 60px;
+  background: var(--dark);
+  color: white;
+  border: 0;
+  margin-top: 20px;
+  padding: 0 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 11px;
+}
+
+.add-button:hover {
+  background: var(--green);
+}
+
+.collection {
+  background: #e9ede4;
+  padding: 85px 5%;
+}
+
+.collection-inner {
+  max-width: 1400px;
+  margin: auto;
+}
+
+.section-label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--green);
+  font-weight: 800;
+}
+
+.collection h2 {
+  font-size: clamp(40px, 5vw, 65px);
+  letter-spacing: -3px;
+  line-height: 1.1;
+  margin: 15px 0 35px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.filter {
+  border: 1px solid #c8d0c3;
+  border-radius: 30px;
+  padding: 11px 20px;
+  background: transparent;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.filter.active,
+.filter:hover {
+  background: var(--dark);
+  color: white;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.grid-item {
+  min-width: 0;
+}
+
+.grid-image {
+  height: 310px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 7px;
+  background: var(--tone);
+  cursor: pointer;
+}
+
+.grid-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  transition: transform .5s;
+}
+
+.grid-item:hover img {
+  transform: scale(1.08);
+}
+
+.grid-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #ffffffdd;
+  padding: 8px 12px;
+  font-size: 9px;
+  font-weight: 800;
+  border-radius: 30px;
+}
+
+.quick-view {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: white;
+  border-radius: 50%;
+  font-size: 23px;
+}
+
+.grid-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 17px 0;
+  gap: 10px;
+}
+
+.grid-info strong {
+  font-size: 14px;
+}
+
+.grid-info small {
+  display: block;
+  color: var(--muted);
+  margin-top: 6px;
+  font-size: 10px;
+}
+
+.grid-info b {
+  white-space: nowrap;
+}
+
+.brand-section {
+  background: #243327;
+  color: white;
+  padding: 90px 6%;
+}
+
+.brand-inner {
+  max-width: 1400px;
+  margin: auto;
+}
+
+.brand-section h2 {
+  font-size: clamp(45px, 6vw, 85px);
+  letter-spacing: -5px;
+  line-height: 1.1;
+  margin: 20px 0;
+}
+
+.brand-section h2 span {
+  color: var(--accent);
+}
+
+.brand-section p {
+  max-width: 470px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #b9c8b7;
+}
+
+footer {
+  padding: 45px 6%;
+  background: #f4f5ee;
+}
+
+.footer-inner {
+  max-width: 1400px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+footer p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+footer h4 {
+  font-size: 12px;
+}
+
+footer a {
+  display: block;
+  font-size: 12px;
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.copyright {
+  max-width: 1400px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #0008;
+  z-index: 100;
+  display: none;
+}
+
+.overlay.open {
+  display: block;
+}
+
+.cart-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: min(450px, 100%);
+  background: #f6f7f2;
+  z-index: 101;
+  padding: 30px;
+  transform: translateX(110%);
+  transition: transform .4s;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-panel.open {
+  transform: translateX(0);
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-header h2 {
+  font-size: 25px;
+}
+
+.close-cart {
+  background: transparent;
+  border: 0;
+  font-size: 30px;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.cart-item strong {
+  font-size: 13px;
+}
+
+.cart-item p {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.cart-item button {
+  background: transparent;
+  border: 0;
+  color: #888;
+  text-decoration: underline;
+  font-size: 11px;
+  padding: 0;
+}
+
+.cart-total {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 800;
+}
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translate(-50%, 30px);
+  background: var(--dark);
+  color: white;
+  padding: 15px 25px;
+  z-index: 200;
+  opacity: 0;
+  transition: .3s;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.toast.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+@media(max-width: 950px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .stage-wrap{
-    height:530px;
-    max-height:none;
+
+  .product-details {
+    grid-template-columns: 1fr 350px;
+    gap: 25px;
   }
-  .product-card{
-    width:260px;
-    height:320px;
-  }
-  .intro h1{font-size:67px}
 }
-@media(max-width:640px){
-  .topbar{font-size:8px;height:30px}
-  .header{height:68px;padding:0 20px}
-  .logo{font-size:22px}
-  .menu,.season,.header-right .icon-button{display:none}
-  .intro{padding-top:40px}
-  .kicker{font-size:8px}
-  .intro h1{
-    font-size:clamp(42px,12vw,70px);
-    margin-top:17px;
+
+@media(max-width: 680px) {
+  header {
+    height: 70px;
+    padding: 0 20px;
   }
-  .intro p{font-size:12px;padding:0 14px}
-  .stage-wrap{height:410px;min-height:0}
-  .vertical-label,.series-marker{display:none}
-  .product-card{
-    width:210px;
-    height:268px;
-    top:48%;
+
+  nav {
+    display: none;
   }
-  .stage-control{
-    width:39px;
-    height:39px;
-    top:50%;
-    font-size:22px;
+
+  .logo {
+    font-size: 19px;
   }
-  .stage-control.prev{left:10px}
-  .stage-control.next{right:10px}
-  .stage-bottom{
-    bottom:12px;
-    font-size:9px;
-    gap:12px;
+
+  .hero {
+    padding-top: 5px;
   }
-  .stage-bottom .hr{width:14px}
-  .photo-code{
-    font-size:8px;
-    left:12px;
-    bottom:12px;
+
+  .hero h1 {
+    font-size: 48px;
+    letter-spacing: -3px;
   }
-  .details{
-    display:flex;
-    flex-direction:column;
-    padding:22px 0 35px;
-    margin:0 22px;
-    gap:12px;
+
+  .showcase {
+    height: 410px;
   }
-  .detail-name{font-size:38px;margin-top:8px}
-  .detail-copy{font-size:12px}
-  .detail-features{margin-top:15px}
-  .purchase{padding-top:5px}
-  .price{
-    text-align:left;
-    margin-bottom:13px;
-    font-size:27px;
+
+  .shoe-item {
+    width: 205px;
+    height: 255px;
   }
-  .selectors{justify-content:flex-start;gap:10px}
-  .swatches{margin-right:auto}
-  .selectors select{width:128px}
-  .trust{text-align:left}
-  .lower{
-    padding:31px 23px;
-    align-items:flex-start;
-    flex-direction:column;
+
+  .arrow {
+    width: 38px;
+    height: 38px;
   }
-  .lower strong{font-size:21px}
-  .footer{
-    padding:23px;
-    gap:10px;
-    flex-wrap:wrap;
-    font-size:9px;
+
+  .prev {
+    left: 10px;
   }
-  .footer span:nth-child(2){display:none}
+
+  .next {
+    right: 10px;
+  }
+
+  .product-details {
+    display: block;
+    margin: 0 20px;
+    padding: 25px 0 40px;
+  }
+
+  .product-details h2 {
+    font-size: 38px;
+  }
+
+  .price {
+    text-align: left;
+    margin-top: 25px;
+  }
+
+  .product-options {
+    justify-content: flex-start;
+  }
+
+  .colors {
+    margin-right: auto;
+  }
+
+  .collection {
+    padding: 60px 20px;
+  }
+
+  .collection h2 {
+    font-size: 42px;
+  }
+
+  .product-grid {
+    gap: 13px;
+  }
+
+  .grid-image {
+    height: 230px;
+  }
+
+  .grid-info strong,
+  .grid-info b {
+    font-size: 12px;
+  }
+
+  .brand-section {
+    padding: 65px 25px;
+  }
+
+  .brand-section h2 {
+    font-size: 48px;
+    letter-spacing: -3px;
+  }
+
+  .footer-inner {
+    flex-wrap: wrap;
+  }
 }
-@media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{
-    scroll-behavior:auto!important;
-    animation-duration:.01ms!important;
-    transition-duration:.01ms!important;
+
+@media(prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 </style>
 </head>
 
 <body>
-<div class="site" id="home">
-  <div class="topbar">
-    <span class="dot"></span>
-    NEW SEASON 2026
-    <span class="dot"></span>
-    A DIFFERENT WAY TO MOVE
-  </div>
 
-  <header class="header">
-    <a class="logo" href="#home" aria-label="Meyakhail home">
-      MEYAKHAIL<sup>®</sup>
-    </a>
-
-    <nav class="menu" aria-label="Main menu">
-      <a class="active" href="#collection">THE COLLECTION</a>
-      <a href="#story">OUR STORY</a>
-      <a href="#contact">CONTACT</a>
-    </nav>
-
-    <div class="header-right">
-      <span class="season">EST. KABUL / 2026</span>
-      <button class="icon-button" id="viewButton" aria-label="View current product in detail">↗</button>
-      <button class="bag-button" id="openBag">
-        BAG <span class="bag-count" id="bagCount">00</span>
-      </button>
-    </div>
-  </header>
-
-  <main id="collection">
-    <section class="intro">
-      <div class="kicker">THE FOOTWEAR STUDIO</div>
-      <h1>THE <em>EDIT.</em></h1>
-      <p>Six silhouettes. Endless ways to move. Find your pair.</p>
-    </section>
-
-    <section class="stage-wrap" aria-label="Interactive shoe collection">
-      <div class="series-marker">DESIGNED FOR MOVEMENT / 001</div>
-      <div class="vertical-label">MEYAKHAIL STUDIO · INTERACTIVE EDITION</div>
-
-      <div class="carousel" id="carousel" aria-label="Swipe or use arrow keys to browse shoes"></div>
-
-      <button class="stage-control prev" id="prev" aria-label="Previous shoe">‹</button>
-      <button class="stage-control next" id="next" aria-label="Next shoe">›</button>
-
-      <div class="stage-bottom">
-        <span>←</span>
-        <span>DRAG TO EXPLORE</span>
-        <div class="hr"></div>
-        <div class="dots" id="dots" aria-label="Product navigation"></div>
-        <span>→</span>
-      </div>
-    </section>
-
-    <section class="details" aria-live="polite" aria-atomic="true">
-      <div>
-        <div class="detail-eyebrow" id="productCount">
-          01 / 06 · THE EVERYDAY COLLECTION
-        </div>
-        <h2 class="detail-name" id="productName">EVERYDAY RUNNER</h2>
-        <p class="detail-copy" id="productDesc">Made for wherever today takes you.</p>
-
-        <div class="detail-features">
-          <span>✳ <strong>COMFORT FIRST</strong></span>
-          <span>◇ <strong>EVERYDAY WEAR</strong></span>
-        </div>
-      </div>
-
-      <div class="purchase">
-        <div class="price" id="productPrice">$129.00</div>
-
-        <div class="selectors">
-          <label class="selector-label">COLOR</label>
-          <div class="swatches" id="colors"></div>
-
-          <label class="selector-label" for="size">SIZE</label>
-          <select id="size">
-            <option value="">SELECT SIZE</option>
-            <option>EU 39</option>
-            <option>EU 40</option>
-            <option>EU 41</option>
-            <option>EU 42</option>
-            <option>EU 43</option>
-            <option>EU 44</option>
-          </select>
-        </div>
-
-        <button class="buy-button" id="addToBag">
-          ADD TO BAG <span aria-hidden="true">↗</span>
-        </button>
-        <div class="trust">A curated design concept · Prices are sample data</div>
-      </div>
-    </section>
-  </main>
-
-  <section id="story" class="lower">
-    <div>
-      <strong>Movement is a mindset.</strong>
-      <p>Every pair tells a story. The footwear studio celebrates shape, attitude and the freedom to choose your own path.</p>
-    </div>
-    <a href="#collection">EXPLORE THE COLLECTION ↗</a>
-  </section>
-
-  <footer id="contact" class="footer">
-    <span>MEYAKHAIL® / MADE TO MOVE</span>
-    <span>KABUL, KARTE CHAR, SECOND STREET</span>
-    <span>© 2026 MEYAKHAIL</span>
-  </footer>
+<div class="announcement">
+  MEYAKHAIL SKECHERS · NEW COLLECTION 2026
 </div>
 
-<div class="noise" aria-hidden="true"></div>
-<div class="backdrop" id="backdrop"></div>
+<header id="top">
+  <a href="#top" class="logo">
+    MEYAKHAIL<small>®</small>
+    <span>SKECHERS / FOOTWEAR</span>
+  </a>
 
-<aside class="drawer" id="drawer" aria-label="Shopping bag" aria-modal="true" role="dialog" inert>
-  <div class="drawer-head">
-    <h2>YOUR BAG <span id="bagHeadingCount">(0)</span></h2>
-    <button id="closeBag" aria-label="Close shopping bag">×</button>
+  <nav>
+    <a href="#featured">FEATURED</a>
+    <a href="#collection">COLLECTION</a>
+    <a href="#about">OUR STORY</a>
+  </nav>
+
+  <button class="cart-button" id="cartButton">
+    BAG <span class="cart-count" id="cartCount">00</span>
+  </button>
+</header>
+
+<main>
+
+<section class="hero" id="featured">
+  <div class="eyebrow">THE FOOTWEAR EXPERIENCE</div>
+
+  <h1>MOVE <span>DIFFERENT.</span></h1>
+
+  <p class="hero-description">
+    Find your next favourite pair. Explore the collection.
+  </p>
+
+  <div class="showcase" id="showcase">
+    <div class="shoe-container" id="shoeContainer"></div>
+
+    <button class="arrow prev" id="prev">‹</button>
+    <button class="arrow next" id="next">›</button>
+
+    <div class="drag-hint">
+      ← DRAG TO EXPLORE →
+    </div>
   </div>
-  <div class="bag-list" id="bagList"></div>
-  <div class="drawer-foot">
-    <div class="total-row">
-      <span>SUBTOTAL</span>
-      <strong id="bagTotal">$0.00</strong>
+</section>
+
+<section class="product-details">
+  <div>
+    <div class="product-number" id="productNumber">01 / 08</div>
+    <div class="product-series" id="productSeries"></div>
+    <h2 id="productName"></h2>
+    <p class="product-description" id="productDescription"></p>
+  </div>
+
+  <div>
+    <div class="price" id="productPrice"></div>
+
+    <div class="product-options">
+      <label>COLOR</label>
+      <div class="colors" id="colors"></div>
+
+      <label for="size">SIZE</label>
+      <select id="size">
+        <option value="">SELECT SIZE</option>
+        <option>EU 39</option>
+        <option>EU 40</option>
+        <option>EU 41</option>
+        <option>EU 42</option>
+        <option>EU 43</option>
+        <option>EU 44</option>
+      </select>
     </div>
-    <button class="checkout" id="checkout">CONTINUE ↗</button>
-    <div class="checkout-note">
-      Demo storefront. Checkout and payment are not connected.
-      Contact the store before placing any real order.
+
+    <button class="add-button" id="addToCart">
+      ADD TO BAG <span>↗</span>
+    </button>
+  </div>
+</section>
+
+<section class="collection" id="collection">
+  <div class="collection-inner">
+
+    <div class="section-label">
+      01 / THE FULL COLLECTION
     </div>
+
+    <h2>
+      Find your next<br>
+      obsession.
+    </h2>
+
+    <div class="filters" id="filters">
+      <button class="filter active" data-filter="All">ALL SHOES</button>
+      <button class="filter" data-filter="Lifestyle">LIFESTYLE</button>
+      <button class="filter" data-filter="Performance">PERFORMANCE</button>
+      <button class="filter" data-filter="Streetwear">STREETWEAR</button>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+
+  </div>
+</section>
+
+<section class="brand-section" id="about">
+  <div class="brand-inner">
+    <div class="section-label">
+      MEYAKHAIL SKECHERS / OUR PHILOSOPHY
+    </div>
+
+    <h2>
+      Made for <span>every</span><br>
+      step forward.
+    </h2>
+
+    <p>
+      A modern footwear experience built around movement,
+      individuality and personal style.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="logo">
+        MEYAKHAIL<small>®</small>
+        <span>SKECHERS / FOOTWEAR</span>
+      </div>
+      <p>Footwear for every pace.</p>
+      <p>کابل، کارته چهار، سرک دوم</p>
+    </div>
+
+    <div>
+      <h4>EXPLORE</h4>
+      <a href="#featured">Interactive Showcase</a>
+      <a href="#collection">All Products</a>
+    </div>
+
+    <div>
+      <h4>VISIT US</h4>
+      <p>Kabul, Karte Char, Second Street</p>
+      <a href="#top">Back to Top ↑</a>
+    </div>
+  </div>
+
+  <div class="copyright">
+    © 2026 MEYAKHAIL SKECHERS
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h2>YOUR BAG</h2>
+    <button class="close-cart" id="closeCart">×</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-total">
+    <span>SUBTOTAL</span>
+    <span id="total">$0.00</span>
   </div>
 </aside>
 
-<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Product image" inert>
-  <button class="zoom-close" id="closeZoom" aria-label="Close image preview">×</button>
-  <figure>
-    <img id="zoomImg" alt="Selected shoe enlarged">
-    <figcaption id="zoomName"></figcaption>
-    <small>EDITORIAL PRODUCT PREVIEW · NOT A 360° MODEL</small>
-  </figure>
-</div>
-
-<div class="toast" id="toast" role="status"></div>
+<div class="toast" id="toast"></div>
 
 <script>
-const products=[
+'use strict';
+
+const products = [
   {
-    id:'MK-001',
-    name:'URBAN PULSE',
-    series:'THE EVERYDAY COLLECTION',
-    desc:'Built for the rhythm of ordinary days. Nothing ordinary about the way it feels.',
-    price:129,
-    photo:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85',
-    bg:'#e9d3cb',
-    colors:['#cb584d','#303937','#d3c7b4'],
-    label:'SIGNATURE'
+    id: 'MK001',
+    name: 'URBAN RUNNER',
+    category: 'Lifestyle',
+    series: 'ESSENTIAL SERIES',
+    price: 129,
+    description: 'A new perspective on everyday comfort.',
+    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=950&q=85',
+    color: '#e8d8d0',
+    colors: ['#ba5147', '#303935', '#d1c4ae'],
+    badge: 'SIGNATURE'
   },
   {
-    id:'MK-002',
-    name:'THE CLASSIC',
-    series:'THE ORIGINALS',
-    desc:'Timeless lines. New energy. An everyday staple, reinvented.',
-    price:139,
-    photo:'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=85',
-    bg:'#e6e2d7',
-    colors:['#d9cdb8','#2e302f','#ac7169'],
-    label:'CLASSIC'
+    id: 'MK002',
+    name: 'CLASSIC LOW',
+    category: 'Lifestyle',
+    series: 'ORIGINALS SERIES',
+    price: 139,
+    description: 'Iconic shape and easy comfort.',
+    image: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=950&q=85',
+    color: '#e6e2d5',
+    colors: ['#d7c8b6', '#2d3130', '#8c7469'],
+    badge: 'CLASSIC'
   },
   {
-    id:'MK-003',
-    name:'AIR MOTION',
-    series:'THE PERFORMANCE EDIT',
-    desc:'Designed to keep up. Light on your feet, bold in your stride.',
-    price:165,
-    photo:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=900&q=85',
-    bg:'#d9e3da',
-    colors:['#aab99f','#373a3b','#d5ab91'],
-    label:'BESTSELLER'
+    id: 'MK003',
+    name: 'AIR MOTION',
+    category: 'Performance',
+    series: 'PERFORMANCE SERIES',
+    price: 165,
+    description: 'Light on your feet and bold in every step.',
+    image: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=950&q=85',
+    color: '#dce8df',
+    colors: ['#a6b99d', '#394340', '#d6ae94'],
+    badge: 'BESTSELLER'
   },
   {
-    id:'MK-004',
-    name:'OFF THE GRID',
-    series:'THE STREET COLLECTION',
-    desc:'Fresh perspective for every corner, every street and every step.',
-    price:155,
-    photo:'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=900&q=85',
-    bg:'#d8dfe3',
-    colors:['#bbc9d0','#2e3031','#ece8df'],
-    label:'NEW DROP'
+    id: 'MK004',
+    name: 'STREET FLOW',
+    category: 'Streetwear',
+    series: 'STREET SERIES',
+    price: 155,
+    description: 'Make the city your own.',
+    image: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=950&q=85',
+    color: '#dce1e5',
+    colors: ['#b6c8cf', '#303339', '#f1e7dc'],
+    badge: 'NEW DROP'
   },
   {
-    id:'MK-005',
-    name:'TERRAIN ONE',
-    series:'THE OUTDOOR EDIT',
-    desc:'Take the long route. Every surface is part of the story.',
-    price:169,
-    photo:'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=85',
-    bg:'#e6d8c4',
-    colors:['#9a9d80','#bb9a80','#333d42'],
-    label:'EXPLORE'
+    id: 'MK005',
+    name: 'TERRAIN ONE',
+    category: 'Performance',
+    series: 'OUTDOOR SERIES',
+    price: 169,
+    description: 'Take confidence with you on every surface.',
+    image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=950&q=85',
+    color: '#e8dac7',
+    colors: ['#899674', '#b49b84', '#303c40'],
+    badge: 'EXPLORE'
   },
   {
-    id:'MK-006',
-    name:'CLOUD NINE',
-    series:'THE MINIMAL EDIT',
-    desc:'Quiet confidence. Effortless form. Designed for all-day comfort.',
-    price:149,
-    photo:'https://images.unsplash.com/photo-1605348532760-6753d2c43329?auto=format&fit=crop&w=900&q=85',
-    bg:'#e6e0df',
-    colors:['#e6ddcf','#a8b9bf','#414546'],
-    label:'ESSENTIAL'
+    id: 'MK006',
+    name: 'CLOUD WALK',
+    category: 'Lifestyle',
+    series: 'EVERYDAY SERIES',
+    price: 149,
+    description: 'Minimal form, maximum comfort.',
+    image: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?auto=format&fit=crop&w=950&q=85',
+    color: '#e8e0df',
+    colors: ['#ded2c6', '#a7bec1', '#3e4347'],
+    badge: 'ESSENTIAL'
+  },
+  {
+    id: 'MK007',
+    name: 'VELOCITY PRO',
+    category: 'Performance',
+    series: 'ACTIVE SERIES',
+    price: 179,
+    description: 'Responsive comfort for life in motion.',
+    image: 'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?auto=format&fit=crop&w=950&q=85',
+    color: '#dce2d7',
+    colors: ['#6c806b', '#d5c4b8', '#353a40'],
+    badge: 'PERFORMANCE'
+  },
+  {
+    id: 'MK008',
+    name: 'DAILY ICON',
+    category: 'Streetwear',
+    series: 'URBAN SERIES',
+    price: 145,
+    description: 'Clean lines and effortless styling.',
+    image: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=950&q=85',
+    color: '#dedfe4',
+    colors: ['#a5aebc', '#ebe3d5', '#252b31'],
+    badge: 'EDITOR PICK'
   }
 ];
 
-const $=s=>document.querySelector(s);
-const money=n=>'$'+n.toFixed(2);
-const clampIndex=n=>(n+products.length)%products.length;
+let current = 2;
+let selectedColor = 0;
+let activeFilter = 'All';
+let cart = [];
 
-let active=2;
-let colorPick=0;
-let items=[];
+try {
+  const saved = JSON.parse(
+    localStorage.getItem('meyakhail-cart') || '[]'
+  );
 
-try{
-  const stored=JSON.parse(localStorage.getItem('meyakhail-demo-bag')||'[]');
-  if(Array.isArray(stored)){
-    items=stored.filter(a=>
-      products.some(p=>p.id===a.id)&&Number.isFinite(a.price)
+  if (Array.isArray(saved)) {
+    cart = saved.filter(item =>
+      products.some(p => p.id === item.id)
     );
   }
-}catch{}
+} catch (e) {}
 
-const carousel=$('#carousel');
-let cards=[];
+const $ = id => document.getElementById(id);
 
-function init(){
-  products.forEach((p,i)=>{
-    const card=document.createElement('div');
-    card.className='product-card';
-    card.tabIndex=0;
-    card.setAttribute('role','button');
-    card.setAttribute('aria-label','Select '+p.name);
+function money(value) {
+  return '$' + value.toFixed(2);
+}
 
-    card.innerHTML=`
-      <div class="photo" style="--product-bg:${p.bg}">
-        <img alt="${p.name} footwear photograph" src="${p.photo}" loading="${i===active?'eager':'lazy'}">
-        <div class="fallback">${p.name}<br>PRODUCT IMAGE</div>
-        <span class="tag">${p.label}</span>
-        <span class="photo-code">${p.id} / STUDIO</span>
-        <span class="photo-arrow">↗</span>
-      </div>
-      <div class="card-shadow"></div>
-    `;
+function selectProduct(index) {
+  current = (index + products.length) % products.length;
+  selectedColor = 0;
 
-    const img=card.querySelector('img');
-    img.onload=()=>img.classList.add('loaded');
-    img.onerror=()=>{img.style.display='none'};
+  const product = products[current];
 
-    card.addEventListener('click',()=>{
-      if(!wasDragged){
-        if(i===active)openZoom();
-        else select(i);
-      }
-    });
+  $('productNumber').textContent =
+    String(current + 1).padStart(2, '0') +
+    ' / ' +
+    String(products.length).padStart(2, '0');
 
-    card.addEventListener('keydown',e=>{
-      if(e.key==='Enter'||e.key===' '){
-        e.preventDefault();
-        if(i===active)openZoom();
-        else select(i);
-      }
-    });
+  $('productSeries').textContent = product.series;
+  $('productName').textContent = product.name;
+  $('productDescription').textContent = product.description;
+  $('productPrice').textContent = money(product.price);
+  $('size').value = '';
 
-    carousel.appendChild(card);
-    cards.push(card);
+  renderColors();
+  updateCarousel();
+}
+
+function renderColors() {
+  const container = $('colors');
+  container.innerHTML = '';
+
+  products[current].colors.forEach((color, index) => {
+    const button = document.createElement('button');
+
+    button.className =
+      'color' + (index === selectedColor ? ' active' : '');
+
+    button.style.background = color;
+    button.setAttribute('aria-label', 'Color ' + (index + 1));
+
+    button.onclick = () => {
+      selectedColor = index;
+      renderColors();
+    };
+
+    container.appendChild(button);
   });
 }
 
-function layout(){
-  const mobile=innerWidth<640;
-  const tablet=innerWidth<950;
-  const step=mobile?143:tablet?200:262;
+function createCarousel() {
+  const container = $('shoeContainer');
+  container.innerHTML = '';
 
-  cards.forEach((card,i)=>{
-    let delta=i-active;
-    const count=products.length;
+  products.forEach((product, index) => {
+    const element = document.createElement('div');
 
-    if(delta>count/2)delta-=count;
-    if(delta< -count/2)delta+=count;
+    element.className = 'shoe-item';
+    element.dataset.index = index;
 
-    const d=Math.abs(delta);
-    const scale=d===0?1:d===1?.8:d===2?.65:.52;
-    const rotation=delta===0?0:delta<0?13:-13;
+    element.innerHTML = `
+      <div class="shoe-card" style="--tone:${product.color}">
+        <img src="${product.image}" alt="${product.name}">
+        <div class="shoe-badge">${product.badge}</div>
+        <div class="shoe-code">${product.id}</div>
+      </div>
+    `;
 
-    card.style.transform=`
-      translate3d(calc(-50% + ${delta*step}px),-50%,${-d*135}px)
-      rotateY(${rotation}deg)
-      rotateZ(${delta*2.5}deg)
+    element.addEventListener('click', () => {
+      if (!dragMoved) {
+        selectProduct(index);
+      }
+    });
+
+    container.appendChild(element);
+  });
+
+  updateCarousel();
+}
+
+function updateCarousel() {
+  const mobile = window.innerWidth < 680;
+  const spacing = mobile ? 140 : 260;
+
+  document.querySelectorAll('.shoe-item').forEach(element => {
+    const index = Number(element.dataset.index);
+
+    let difference = index - current;
+
+    if (difference > products.length / 2) {
+      difference -= products.length;
+    }
+
+    if (difference < -products.length / 2) {
+      difference += products.length;
+    }
+
+    const distance = Math.abs(difference);
+
+    const scale =
+      distance === 0 ? 1 :
+      distance === 1 ? 0.82 :
+      distance === 2 ? 0.66 : 0.50;
+
+    const opacity =
+      distance === 0 ? 1 :
+      distance === 1 ? 0.75 :
+      distance === 2 ? 0.42 : 0.10;
+
+    element.style.transform = `
+      translate3d(
+        calc(-50% + ${difference * spacing}px),
+        -50%,
+        ${-distance * 130}px
+      )
+      rotateY(${-difference * 10}deg)
+      rotateZ(${difference * 2}deg)
       scale(${scale})
     `;
 
-    card.style.zIndex=20-d;
-    card.style.opacity=d>2?.17:d===2?.5:d===1?.76:1;
-    card.style.pointerEvents=d>2?'none':'auto';
-    card.classList.toggle('current',!d);
-    card.setAttribute('aria-current',d===0?'true':'false');
+    element.style.opacity = opacity;
+    element.style.zIndex = 20 - distance;
+    element.style.pointerEvents =
+      distance > 2 ? 'none' : 'auto';
+
+    element.classList.toggle(
+      'selected',
+      index === current
+    );
   });
 }
 
-function select(n){
-  active=clampIndex(n);
-  colorPick=0;
-  $('#size').value='';
+$('prev').onclick = () => selectProduct(current - 1);
+$('next').onclick = () => selectProduct(current + 1);
 
-  const p=products[active];
-  $('#productCount').textContent=
-    `${String(active+1).padStart(2,'0')} / 0${products.length} · ${p.series}`;
-  $('#productName').textContent=p.name;
-  $('#productDesc').textContent=p.desc;
-  $('#productPrice').textContent=money(p.price);
-  $('#colors').innerHTML='';
+let startX = null;
+let dragMoved = false;
 
-  p.colors.forEach((c,i)=>{
-    const b=document.createElement('button');
-    b.className='swatch'+(colorPick===i?' selected':'');
-    b.style.background=c;
-    b.setAttribute('aria-label','Select color '+(i+1));
-    b.setAttribute('aria-pressed',colorPick===i?'true':'false');
+$('showcase').addEventListener('pointerdown', event => {
+  if (event.target.closest('button')) return;
 
-    b.onclick=()=>{
-      colorPick=i;
-      $('#colors').querySelectorAll('button').forEach((el,j)=>{
-        el.classList.toggle('selected',i===j);
-        el.setAttribute('aria-pressed',i===j?'true':'false');
-      });
-    };
-
-    $('#colors').appendChild(b);
-  });
-
-  $('#dots').innerHTML=products.map((_,i)=>`
-    <button class="${i===active?'on':''}"
-    aria-label="Show product ${i+1}"
-    data-go="${i}"></button>
-  `).join('');
-
-  $('#dots').querySelectorAll('button').forEach(b=>
-    b.addEventListener('click',()=>select(+b.dataset.go))
-  );
-
-  layout();
-}
-
-$('#prev').onclick=()=>select(active-1);
-$('#next').onclick=()=>select(active+1);
-
-let startX=null;
-let wasDragged=false;
-
-carousel.addEventListener('pointerdown',e=>{
-  startX=e.clientX;
-  wasDragged=false;
-  carousel.classList.add('grabbing');
+  startX = event.clientX;
+  dragMoved = false;
 });
 
-carousel.addEventListener('pointerup',e=>{
-  carousel.classList.remove('grabbing');
+$('showcase').addEventListener('pointerup', event => {
+  if (startX === null) return;
 
-  if(startX!==null&&Math.abs(e.clientX-startX)>45){
-    wasDragged=true;
-    select(active+(e.clientX<startX?1:-1));
-    setTimeout(()=>wasDragged=false,80);
-  }
-  startX=null;
-});
+  const distance = event.clientX - startX;
 
-carousel.addEventListener('pointercancel',()=>{
-  startX=null;
-  carousel.classList.remove('grabbing');
-});
+  if (Math.abs(distance) > 45) {
+    dragMoved = true;
 
-addEventListener('resize',layout);
+    selectProduct(
+      current + (distance < 0 ? 1 : -1)
+    );
 
-function toast(s){
-  const el=$('#toast');
-  el.textContent=s;
-  el.classList.add('show');
-  clearTimeout(toast.t);
-  toast.t=setTimeout(()=>el.classList.remove('show'),2500);
-}
-
-function save(){
-  try{
-    localStorage.setItem('meyakhail-demo-bag',JSON.stringify(items));
-  }catch{}
-  renderBag();
-}
-
-function renderBag(){
-  $('#bagCount').textContent=String(items.length).padStart(2,'0');
-  $('#bagHeadingCount').textContent='('+items.length+')';
-  $('#bagTotal').textContent=money(items.reduce((t,a)=>t+a.price,0));
-  $('#bagList').replaceChildren();
-
-  if(!items.length){
-    $('#bagList').innerHTML=
-      '<p class="empty">Your bag is empty.<br>Discover your next favorite pair.</p>';
-    return;
+    setTimeout(() => {
+      dragMoved = false;
+    }, 100);
   }
 
-  items.forEach((item,i)=>{
-    const row=document.createElement('div');
-    row.className='bag-row';
-    const p=products.find(p=>p.id===item.id);
+  startX = null;
+});
 
-    row.innerHTML=`
-      <img src="${p.photo}" alt="${p.name}">
+window.addEventListener('resize', updateCarousel);
+
+document.addEventListener('keydown', event => {
+  if (
+    ['INPUT', 'SELECT', 'TEXTAREA'].includes(
+      document.activeElement.tagName
+    )
+  ) return;
+
+  if (event.key === 'ArrowLeft') {
+    selectProduct(current - 1);
+  }
+
+  if (event.key === 'ArrowRight') {
+    selectProduct(current + 1);
+  }
+
+  if (event.key === 'Escape') {
+    closeCart();
+  }
+});
+
+function renderProducts() {
+  const grid = $('productGrid');
+  grid.innerHTML = '';
+
+  products
+    .filter(product =>
+      activeFilter === 'All' ||
+      product.category === activeFilter
+    )
+    .forEach(product => {
+      const index = products.indexOf(product);
+
+      const card = document.createElement('article');
+      card.className = 'grid-item';
+
+      card.innerHTML = `
+        <div class="grid-image" style="--tone:${product.color}">
+          <img loading="lazy" src="${product.image}"
+               alt="${product.name}">
+          <span class="grid-badge">${product.badge}</span>
+          <button class="quick-view" aria-label="View product">↗</button>
+        </div>
+
+        <div class="grid-info">
+          <div>
+            <strong>${product.name}</strong>
+            <small>${product.series}</small>
+          </div>
+          <b>${money(product.price)}</b>
+        </div>
+      `;
+
+      card.querySelector('.grid-image').onclick = () => {
+        selectProduct(index);
+
+        $('featured').scrollIntoView({
+          behavior: 'smooth'
+        });
+      };
+
+      grid.appendChild(card);
+    });
+}
+
+document.querySelectorAll('.filter').forEach(button => {
+  button.onclick = () => {
+    activeFilter = button.dataset.filter;
+
+    document.querySelectorAll('.filter').forEach(item => {
+      item.classList.toggle(
+        'active',
+        item === button
+      );
+    });
+
+    renderProducts();
+  };
+});
+
+function notify(message) {
+  const toast = $('toast');
+
+  toast.textContent = message;
+  toast.classList.add('show');
+
+  clearTimeout(notify.timer);
+
+  notify.timer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem(
+      'meyakhail-cart',
+      JSON.stringify(cart)
+    );
+  } catch (e) {}
+
+  renderCart();
+}
+
+function renderCart() {
+  $('cartCount').textContent =
+    String(cart.length).padStart(2, '0');
+
+  const container = $('cartItems');
+  container.innerHTML = '';
+
+  if (!cart.length) {
+    container.innerHTML = '<p>Your bag is empty.</p>';
+  }
+
+  cart.forEach((item, index) => {
+    const product = products.find(p => p.id === item.id);
+    if (!product) return;
+
+    const row = document.createElement('div');
+    row.className = 'cart-item';
+
+    row.innerHTML = `
       <div>
-        <h3>${p.name}</h3>
-        <p>${item.size} · COLOR ${item.color+1}</p>
-        <button aria-label="Remove ${p.name}">REMOVE</button>
+        <strong>${product.name}</strong>
+        <p>${item.size} · COLOR ${item.color + 1}</p>
+        <button>Remove</button>
       </div>
-      <strong>${money(item.price)}</strong>
+
+      <strong>${money(product.price)}</strong>
     `;
 
-    row.querySelector('button').onclick=()=>{
-      items.splice(i,1);
-      save();
+    row.querySelector('button').onclick = () => {
+      cart.splice(index, 1);
+      saveCart();
     };
 
-    $('#bagList').appendChild(row);
+    container.appendChild(row);
   });
+
+  const total = cart.reduce((sum, item) => {
+    const product = products.find(p => p.id === item.id);
+    return sum + (product ? product.price : 0);
+  }, 0);
+
+  $('total').textContent = money(total);
 }
 
-function openBag(){
-  closeZoom();
-  $('#backdrop').classList.add('open');
-  $('#drawer').classList.add('open');
-  $('#drawer').inert=false;
-  $('#closeBag').focus();
+function openCart() {
+  $('overlay').classList.add('open');
+  $('cartPanel').classList.add('open');
 }
 
-function closeBag(){
-  $('#backdrop').classList.remove('open');
-  $('#drawer').classList.remove('open');
-  $('#drawer').inert=true;
+function closeCart() {
+  $('overlay').classList.remove('open');
+  $('cartPanel').classList.remove('open');
 }
 
-$('#openBag').onclick=openBag;
-$('#closeBag').onclick=closeBag;
-$('#backdrop').onclick=closeBag;
+$('cartButton').onclick = openCart;
+$('closeCart').onclick = closeCart;
+$('overlay').onclick = closeCart;
 
-$('#addToBag').onclick=()=>{
-  const size=$('#size').value;
+$('addToCart').onclick = () => {
+  const size = $('size').value;
 
-  if(!size){
-    toast('Please select your size first.');
-    $('#size').focus();
+  if (!size) {
+    notify('Please select your size first.');
     return;
   }
 
-  const p=products[active];
-  items.push({
-    id:p.id,
+  const product = products[current];
+
+  cart.push({
+    id: product.id,
     size,
-    color:colorPick,
-    price:p.price
+    color: selectedColor
   });
 
-  save();
-  toast(p.name+' added to your bag');
-  openBag();
+  saveCart();
+  notify(product.name + ' added to your bag');
+  openCart();
 };
 
-$('#checkout').onclick=()=>
-  toast('Demo only. Checkout is not yet connected.');
-
-function openZoom(){
-  closeBag();
-  const p=products[active];
-
-  $('#zoomImg').src=p.photo;
-  $('#zoomImg').alt=p.name+' enlarged photo';
-  $('#zoomName').textContent=p.name;
-  $('#zoom').classList.add('open');
-  $('#zoom').inert=false;
-  $('#closeZoom').focus();
-}
-
-function closeZoom(){
-  $('#zoom').classList.remove('open');
-  $('#zoom').inert=true;
-}
-
-$('#viewButton').onclick=openZoom;
-$('#closeZoom').onclick=closeZoom;
-
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){
-    closeZoom();
-    closeBag();
-    return;
-  }
-
-  if(
-    $('#zoom').classList.contains('open')||
-    $('#drawer').classList.contains('open')||
-    ['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)
-  )return;
-
-  if(e.key==='ArrowLeft')select(active-1);
-  if(e.key==='ArrowRight')select(active+1);
-});
-
-init();
-select(active);
-renderBag();
+createCarousel();
+selectProduct(current);
+renderProducts();
+renderCart();
 </script>
+
 </body>
 </html>
