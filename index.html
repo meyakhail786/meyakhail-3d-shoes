@@ -1,1061 +1,1381 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MEYAKHAIL | Interactive Footwear</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f5f1">
+<meta name="description" content="MEYAKHAIL interactive footwear studio.">
+<title>MEYAKHAIL® | The Footwear Studio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
-
-:root {
-  --ink: #181818;
-  --muted: #8d8d89;
-  --paper: #fafaf8;
+:root{
+  --bg:#f5f5f1;
+  --ink:#20211f;
+  --muted:#8d908a;
+  --line:#dedfd8;
+  --acid:#d5f36a;
+  --surface:#fff;
+  --max:1540px;
 }
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: 'DM Sans', Arial, sans-serif;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'DM Sans',Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
 }
-
-button, select { font: inherit; }
-button { cursor: pointer; }
-a { color: inherit; text-decoration: none; }
-
-.shell {
-  min-height: 100vh;
-  max-width: 1720px;
-  margin: auto;
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+button:focus-visible,a:focus-visible,select:focus-visible{
+  outline:3px solid #7d9d27;
+  outline-offset:3px;
 }
+::selection{background:var(--acid);color:var(--ink)}
 
-.nav {
-  height: 92px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 clamp(24px, 5vw, 92px);
-  border-bottom: 1px solid #ededeb;
+.site{
+  min-height:100svh;
+  overflow:hidden;
+  position:relative;
 }
-
-.brand {
-  font: 900 22px Montserrat, Arial;
-  letter-spacing: -1.6px;
+.noise{
+  pointer-events:none;
+  position:fixed;
+  inset:0;
+  z-index:20;
+  opacity:.09;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.12' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-
-.brand span {
-  font-size: 9px;
-  vertical-align: top;
-  margin-left: 3px;
+.topbar{
+  height:35px;
+  background:#20211f;
+  color:#e6e7db;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:13px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size:9px;
+  font-weight:700;
 }
-
-.navlinks {
-  display: flex;
-  gap: 38px;
-  margin-left: 40px;
+.topbar .dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--acid);
 }
-
-.navlinks a, .season, .cart {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  font-weight: 800;
+.header{
+  height:86px;
+  max-width:var(--max);
+  margin:auto;
+  padding:0 clamp(24px,4.7vw,78px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+  z-index:4;
 }
-
-.navlinks a { color: #aaa; }
-.navlinks a.active { color: #222; }
-
-.right {
-  display: flex;
-  align-items: center;
-  gap: 35px;
+.logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:28px;
+  letter-spacing:-.095em;
+  font-weight:700;
+  line-height:1;
 }
-
-.season { color: #a9aaa6; }
-
-.cart {
-  background: none;
-  border: 0;
-  display: flex;
-  gap: 14px;
-  align-items: center;
+.logo sup{
+  font-size:11px;
+  letter-spacing:0;
+  position:relative;
+  top:-10px;
+  margin-left:3px;
 }
-
-.cart b {
-  background: #151515;
-  color: white;
-  padding: 7px 9px;
-  border-radius: 50%;
-  font-size: 10px;
+.menu{
+  display:flex;
+  gap:40px;
+  align-items:center;
 }
-
-.eyebrow {
-  margin-top: 59px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  color: #959591;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 3px;
+.menu a{
+  text-transform:uppercase;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.15em;
+  color:#74786f;
+  transition:color .2s;
 }
-
-.eyebrow .line {
-  width: 24px;
-  height: 1px;
-  background: #aaa;
+.menu a.active,.menu a:hover{color:#161817}
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:22px;
 }
-
-h1 {
-  text-align: center;
-  font: 800 clamp(38px, 5.2vw, 85px)/1 Montserrat, Arial;
-  letter-spacing: -4.2px;
-  margin: 18px 0 13px;
+.season{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:700;
+  letter-spacing:.14em;
 }
-
-.period { color: #b9cba6; }
-
-.subtitle {
-  text-align: center;
-  font-size: 13px;
-  color: #9b9b96;
-  margin: 0;
+.icon-button{
+  border:1px solid var(--line);
+  background:transparent;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--ink);
+  transition:background .2s;
 }
-
-.stage {
-  height: clamp(360px, 37vw, 550px);
-  position: relative;
-  overflow: hidden;
-  touch-action: pan-y;
-  user-select: none;
-  cursor: grab;
+.icon-button:hover{background:var(--acid)}
+.bag-button{
+  border:0;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.11em;
 }
-
-.stage:active { cursor: grabbing; }
-
-.stage-floor {
-  position: absolute;
-  top: 30%;
-  left: 18%;
-  right: 18%;
-  height: 65%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(230,231,224,.55),
-    transparent 68%
-  );
-  pointer-events: none;
+.bag-count{
+  background:#20211f;
+  color:#fff;
+  padding:7px 9px;
+  border-radius:50%;
+  font-size:10px;
 }
-
-.shoe-rail {
-  position: absolute;
-  inset: 0;
-  perspective: 1300px;
+main{
+  max-width:var(--max);
+  margin:0 auto;
 }
-
-.shoe {
-  position: absolute;
-  width: clamp(210px, 27vw, 425px);
-  height: 250px;
-  top: 38%;
-  left: 50%;
-  margin-left: calc(clamp(210px, 27vw, 425px) / -2);
-  transform-origin: center;
-  transition:
-    transform .72s cubic-bezier(.2,.8,.2,1),
-    opacity .6s,
-    filter .7s;
-  will-change: transform;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+.intro{
+  text-align:center;
+  padding:37px 20px 0;
 }
-
-.shoe svg {
-  width: 100%;
-  height: auto;
-  max-height: 100%;
-  overflow: visible;
-  filter: drop-shadow(2px 28px 14px rgba(25,25,25,.13));
+.kicker{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:13px;
+  text-transform:uppercase;
+  letter-spacing:.24em;
+  font-size:10px;
+  font-weight:700;
+  color:#777d72;
 }
-
-.shoe.selected svg {
-  filter: drop-shadow(5px 30px 22px rgba(25,25,25,.16));
+.kicker:before,.kicker:after{
+  content:'';
+  width:33px;
+  height:1px;
+  background:#a7aba3;
 }
-
-.focus-halo {
-  position: absolute;
-  left: 50%;
-  top: 45%;
-  width: 400px;
-  height: 220px;
-  transform: translate(-50%, -40%);
-  background: radial-gradient(
-    ellipse,
-    rgba(226,231,217,.31),
-    transparent 72%
-  );
-  z-index: -1;
+.intro h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  letter-spacing:-.075em;
+  font-size:clamp(48px,7.5vw,112px);
+  margin:10px 0 -2px;
+  line-height:1.05;
 }
-
-.floor-line {
-  position: absolute;
-  bottom: 14%;
-  left: 9%;
-  right: 9%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #e6e6e2,
-    transparent
-  );
+.intro h1 em{
+  font-style:normal;
+  color:#aab894;
 }
-
-.hint {
-  position: absolute;
-  bottom: 4%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 9px;
-  font-weight: 800;
-  color: #aaa;
-  letter-spacing: 2.5px;
-  white-space: nowrap;
-  display: flex;
-  gap: 16px;
-  align-items: center;
+.intro p{
+  margin:17px 0 0;
+  color:#8b8e86;
+  font-size:13px;
+  letter-spacing:.025em;
 }
-
-.hint span {
-  font-size: 21px;
-  font-weight: 400;
+.stage-wrap{
+  position:relative;
+  margin:0 auto;
+  min-height:450px;
+  height:clamp(460px,43vw,630px);
+  max-height:68vh;
+  overflow:hidden;
 }
-
-.arrow {
-  position: absolute;
-  top: 51%;
-  transform: translateY(-50%);
-  background: #fff9;
-  border: 1px solid #e4e4df;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  font-size: 28px;
-  z-index: 25;
+.stage-wrap:before{
+  content:'';
+  position:absolute;
+  top:12%;
+  left:15%;
+  right:15%;
+  height:72%;
+  background:radial-gradient(ellipse at center,#edf0e8 0,transparent 69%);
+  pointer-events:none;
 }
-
-.arrow.prev { left: 4%; }
-.arrow.next { right: 4%; }
-
-.details {
-  margin: 0 auto 48px;
-  max-width: 1120px;
-  border-top: 1px solid #e8e8e4;
-  padding: 29px 4px;
-  display: flex;
-  justify-content: space-between;
-  gap: 35px;
+.stage-wrap:after{
+  content:'';
+  position:absolute;
+  left:5%;
+  right:5%;
+  bottom:14%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#cbd0c4,transparent);
+  pointer-events:none;
 }
-
-.counter {
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #aaa;
-  margin-bottom: 19px;
+.series-marker{
+  position:absolute;
+  top:28px;
+  left:clamp(25px,5vw,90px);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.17em;
+  color:#969b90;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
-
-.product-type {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: #b2b3ad;
+.series-marker:before{
+  content:'';
+  height:7px;
+  width:7px;
+  background:#81946b;
+  border-radius:50%;
 }
-
-.product-about h2 {
-  font: 800 clamp(25px, 2.4vw, 36px) Montserrat;
-  margin: 7px 0 10px;
-  letter-spacing: -1.5px;
+.vertical-label{
+  position:absolute;
+  right:clamp(18px,3vw,50px);
+  top:20%;
+  writing-mode:vertical-rl;
+  font-size:10px;
+  letter-spacing:.21em;
+  color:#a3a79f;
+  font-weight:700;
 }
-
-.product-about p {
-  margin: 0;
-  color: #999;
-  font-size: 12px;
+.carousel{
+  position:absolute;
+  inset:0;
+  perspective:1600px;
+  touch-action:pan-y;
+  cursor:grab;
 }
-
-.product-buy { width: 360px; }
-
-.price {
-  text-align: right;
-  font: 800 22px Montserrat;
-  margin-bottom: 21px;
+.carousel.grabbing{cursor:grabbing}
+.product-card{
+  position:absolute;
+  left:50%;
+  top:49%;
+  width:clamp(190px,25vw,365px);
+  height:clamp(235px,29vw,395px);
+  transform-style:preserve-3d;
+  transform-origin:center;
+  transition:transform .75s cubic-bezier(.17,.82,.18,1),opacity .5s,filter .5s;
+  display:grid;
+  place-items:center;
+  will-change:transform;
+  outline:none;
 }
-
-.options {
-  display: grid;
-  grid-template-columns: 50px 1fr 38px 125px;
-  align-items: center;
-  gap: 13px;
+.product-card:focus-visible .photo{
+  outline:3px solid #839e42;
+  outline-offset:5px;
 }
-
-.options > span {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: #aaa;
+.product-card:not(.current){filter:saturate(.83)}
+.photo{
+  width:100%;
+  height:100%;
+  position:relative;
+  border-radius:170px 170px 38px 38px;
+  overflow:hidden;
+  background:var(--product-bg);
+  box-shadow:0 20px 60px rgba(33,38,28,.09),inset 0 0 1px #fff6;
 }
-
-.swatches {
-  display: flex;
-  gap: 7px;
+.photo:before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(145deg,#ffffff4d,transparent 38%,#00000009);
+  z-index:1;
+  pointer-events:none;
 }
-
-.swatch {
-  height: 19px;
-  width: 19px;
-  border-radius: 50%;
-  border: 2px solid white;
-  outline: 1px solid transparent;
+.photo img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  mix-blend-mode:multiply;
+  transition:transform .8s cubic-bezier(.16,.83,.16,1);
 }
-
-.swatch.active { outline-color: #444; }
-
-select {
-  padding: 9px 4px;
-  border: 1px solid #e6e6e2;
-  background: transparent;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: .6px;
-  color: #333;
+.current .photo img{transform:scale(1.045)}
+.photo .fallback{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  font-size:10px;
+  letter-spacing:.13em;
+  font-weight:700;
+  color:#50544c;
+  padding:35px;
 }
-
-.add {
-  width: 100%;
-  border: 0;
-  background: #1c1c1b;
-  color: white;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-align: left;
-  padding: 19px 24px;
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  transition: background .2s;
+.photo img.loaded + .fallback{display:none}
+.photo-code{
+  position:absolute;
+  left:20px;
+  bottom:20px;
+  z-index:2;
+  font-weight:700;
+  font-size:9px;
+  letter-spacing:.16em;
+  opacity:.74;
 }
-
-.add:hover { background: #46523c; }
-
-footer {
-  padding: 26px clamp(24px,5vw,92px);
-  border-top: 1px solid #e8e8e4;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 9px;
-  letter-spacing: 1.3px;
-  font-weight: 700;
-  color: #aaa;
+.photo-arrow{
+  position:absolute;
+  right:19px;
+  bottom:18px;
+  z-index:2;
+  width:29px;
+  height:29px;
+  background:#fff9;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  font-size:19px;
+  opacity:0;
+  transition:opacity .2s;
 }
-
-.toast {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translate(-50%,30px);
-  background: #161616;
-  color: #fff;
-  padding: 14px 25px;
-  font-size: 12px;
-  opacity: 0;
-  pointer-events: none;
-  transition: .35s;
-  z-index: 100;
+.current .photo-arrow{opacity:1}
+.card-shadow{
+  width:75%;
+  height:30px;
+  border-radius:50%;
+  position:absolute;
+  bottom:-36px;
+  background:#29372a24;
+  filter:blur(16px);
+  transform:translateZ(-50px);
 }
-
-.toast.show {
-  opacity: 1;
-  transform: translate(-50%,0);
+.tag{
+  position:absolute;
+  top:12px;
+  right:15px;
+  background:#fffbe8e6;
+  font-size:9px;
+  letter-spacing:.1em;
+  font-weight:700;
+  border-radius:30px;
+  padding:8px 12px;
+  z-index:2;
 }
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: #0005;
-  z-index: 101;
-  opacity: 0;
-  visibility: hidden;
-  transition: .3s;
+.stage-control{
+  position:absolute;
+  top:47%;
+  transform:translateY(-50%);
+  width:54px;
+  height:54px;
+  border:1px solid #d7dbd2;
+  background:#ffffffaa;
+  border-radius:50%;
+  font-size:26px;
+  z-index:3;
+  transition:background .2s,transform .2s;
 }
-
-.overlay.open {
-  opacity: 1;
-  visibility: visible;
+.stage-control:hover{
+  background:var(--acid);
+  transform:translateY(-50%) scale(1.04);
 }
-
-.bag-panel {
-  position: fixed;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: min(430px,100%);
-  background: white;
-  z-index: 102;
-  transform: translateX(100%);
-  transition: .35s;
-  padding: 27px;
-  display: flex;
-  flex-direction: column;
+.stage-control.prev{left:clamp(17px,3.5vw,54px)}
+.stage-control.next{right:clamp(17px,3.5vw,54px)}
+.stage-bottom{
+  position:absolute;
+  bottom:24px;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:26px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.23em;
+  color:#939890;
 }
-
-.bag-panel.open { transform: translateX(0); }
-
-.bag-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #eee;
+.stage-bottom b{font-weight:700;color:#20211f}
+.stage-bottom .hr{
+  height:1px;
+  width:34px;
+  background:#9da49a;
 }
-
-.bag-head h2 { font: 800 19px Montserrat; }
-
-.bag-head button {
-  border: 0;
-  background: none;
-  font-size: 28px;
+.dots{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
-
-.bag-items {
-  flex: 1;
-  overflow-y: auto;
-  padding-top: 25px;
-  color: #777;
-  font-size: 13px;
+.dots button{
+  padding:0;
+  border:0;
+  width:5px;
+  height:5px;
+  background:#b8bcb3;
+  border-radius:20px;
+  transition:width .3s,background .3s;
 }
-
-.bag-item {
-  padding: 12px 0;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
+.dots button.on{
+  background:#333a2d;
+  width:23px;
 }
-
-.bag-item strong { color: #222; }
-
-.bag-foot {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 22px;
-  border-top: 1px solid #eee;
-  font-size: 12px;
+.details{
+  max-width:calc(var(--max) - 150px);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 420px;
+  gap:70px;
+  padding:26px 14px 44px;
+  border-top:1px solid var(--line);
+  min-height:230px;
 }
-
-.bag-foot strong {
-  font-size: 20px;
-  color: #222;
+.detail-eyebrow{
+  font-size:10px;
+  color:#9ca399;
+  font-weight:700;
+  letter-spacing:.2em;
 }
-
-@media(max-width:760px) {
-  .nav {
-    height: 74px;
-    padding: 0 22px;
+.detail-name{
+  margin:13px 0 8px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(35px,3.9vw,59px);
+  line-height:1.04;
+  letter-spacing:-.065em;
+}
+.detail-copy{
+  color:#838980;
+  font-size:13px;
+  line-height:1.7;
+  max-width:460px;
+  margin:0;
+}
+.detail-features{
+  display:flex;
+  gap:22px;
+  margin-top:22px;
+}
+.detail-features span{
+  font-size:10px;
+  color:#888e83;
+  letter-spacing:.06em;
+}
+.detail-features strong{color:#535d4b}
+.purchase{padding-top:5px}
+.price{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:30px;
+  font-weight:700;
+  letter-spacing:-.07em;
+  text-align:right;
+  margin-bottom:23px;
+}
+.selectors{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  justify-content:flex-end;
+}
+.selector-label{
+  font-size:10px;
+  color:#90968a;
+  font-weight:700;
+  letter-spacing:.15em;
+}
+.swatches{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-right:24px;
+}
+.swatch{
+  width:22px;
+  height:22px;
+  border:2px solid var(--bg);
+  border-radius:50%;
+  outline:1px solid transparent;
+  transition:transform .15s;
+}
+.swatch.selected{
+  outline-color:#333;
+  transform:scale(1.08);
+}
+.selectors select{
+  border:1px solid #d7dad0;
+  background:#fdfdfb;
+  padding:12px 14px;
+  width:138px;
+  font-size:10px;
+  letter-spacing:.07em;
+  font-weight:700;
+  color:#323631;
+  border-radius:3px;
+}
+.buy-button{
+  margin-top:18px;
+  background:#20221f;
+  color:#fff;
+  border:0;
+  width:100%;
+  min-height:60px;
+  padding:0 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  text-transform:uppercase;
+  letter-spacing:.17em;
+  font-size:11px;
+  font-weight:700;
+  transition:background .2s,color .2s;
+}
+.buy-button:hover{
+  background:var(--acid);
+  color:#1e221b;
+}
+.trust{
+  margin-top:12px;
+  text-align:right;
+  font-size:10px;
+  color:#9aa095;
+  letter-spacing:.04em;
+}
+.lower{
+  background:#e9ece4;
+  margin-top:15px;
+  padding:36px clamp(25px,5vw,80px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+.lower strong{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:24px;
+  letter-spacing:-.05em;
+}
+.lower p{
+  font-size:12px;
+  color:#7a8075;
+  max-width:390px;
+}
+.lower a{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.13em;
+  border-bottom:1px solid #67765a;
+  padding-bottom:8px;
+  white-space:nowrap;
+}
+.footer{
+  border-top:1px solid #dee1d9;
+  padding:25px clamp(25px,5vw,80px);
+  max-width:var(--max);
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  font-size:10px;
+  color:#969c91;
+  letter-spacing:.13em;
+  font-weight:700;
+}
+.backdrop{
+  position:fixed;
+  inset:0;
+  background:#13171091;
+  z-index:30;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s;
+}
+.backdrop.open{
+  opacity:1;
+  pointer-events:auto;
+}
+.drawer{
+  position:fixed;
+  right:0;
+  top:0;
+  height:100dvh;
+  width:min(480px,100%);
+  z-index:31;
+  background:#f8f9f4;
+  padding:30px;
+  transform:translateX(105%);
+  transition:transform .42s cubic-bezier(.2,.8,.2,1);
+  display:flex;
+  flex-direction:column;
+  box-shadow:-20px 0 50px #0002;
+}
+.drawer.open{transform:translateX(0)}
+.drawer-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #dfe2da;
+  padding-bottom:18px;
+}
+.drawer-head h2{
+  font:700 28px 'Space Grotesk';
+  letter-spacing:-.06em;
+  margin:0;
+}
+.drawer-head button,.zoom-close{
+  border:0;
+  background:transparent;
+  font-size:30px;
+  line-height:1;
+}
+.bag-list{
+  flex:1;
+  overflow:auto;
+  padding:15px 0;
+}
+.empty{
+  text-align:center;
+  margin-top:35%;
+  color:#929a8c;
+  font-size:13px;
+}
+.bag-row{
+  display:grid;
+  grid-template-columns:73px 1fr auto;
+  gap:15px;
+  align-items:center;
+  padding:14px 0;
+  border-bottom:1px solid #e5e7df;
+}
+.bag-row img{
+  width:73px;
+  height:85px;
+  object-fit:cover;
+  border-radius:30px 30px 10px 10px;
+}
+.bag-row h3{
+  font:700 14px 'Space Grotesk';
+  margin:0 0 7px;
+}
+.bag-row p{
+  margin:0;
+  color:#8a9185;
+  font-size:11px;
+}
+.bag-row button{
+  background:transparent;
+  border:0;
+  color:#777;
+  font-size:11px;
+  text-decoration:underline;
+  margin-top:9px;
+  padding:0;
+}
+.bag-row strong{font-size:13px}
+.drawer-foot{
+  border-top:1px solid #dfe2da;
+  padding-top:18px;
+}
+.total-row{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  font-weight:700;
+}
+.total-row strong{
+  font:700 25px 'Space Grotesk';
+}
+.checkout{
+  background:#20221f;
+  color:#fff;
+  border:0;
+  width:100%;
+  padding:18px;
+  margin-top:20px;
+  text-transform:uppercase;
+  font-size:11px;
+  letter-spacing:.17em;
+  font-weight:700;
+}
+.checkout-note{
+  font-size:11px;
+  color:#969b92;
+  line-height:1.5;
+  margin-top:12px;
+}
+.zoom{
+  position:fixed;
+  inset:0;
+  z-index:32;
+  background:#ecefe7;
+  display:none;
+  place-items:center;
+  padding:35px;
+}
+.zoom.open{display:grid}
+.zoom-close{
+  position:absolute;
+  right:35px;
+  top:28px;
+  font-size:40px;
+}
+.zoom figure{
+  margin:0;
+  display:grid;
+  justify-items:center;
+  width:min(860px,90vw);
+}
+.zoom img{
+  width:100%;
+  height:min(65vh,650px);
+  object-fit:contain;
+  border-radius:12px;
+  filter:drop-shadow(0 20px 24px #0002);
+}
+.zoom figcaption{
+  margin-top:12px;
+  font:700 17px 'Space Grotesk';
+}
+.zoom small{
+  font-size:10px;
+  color:#92978d;
+  letter-spacing:.2em;
+  margin-top:7px;
+}
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  z-index:60;
+  background:#22271e;
+  color:white;
+  padding:14px 24px;
+  transform:translate(-50%,30px);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  font-size:12px;
+  min-width:200px;
+  text-align:center;
+}
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+@media(max-width:900px){
+  .menu{gap:17px}
+  .season{display:none}
+  .details{
+    margin:0 24px;
+    gap:24px;
+    grid-template-columns:1fr 345px;
   }
-
-  .brand { font-size: 19px; }
-  .navlinks, .season { display: none; }
-  .eyebrow { margin-top: 45px; }
-
-  h1 {
-    font-size: clamp(36px,9vw,55px);
-    letter-spacing: -2.5px;
+  .stage-wrap{
+    height:530px;
+    max-height:none;
   }
-
-  .stage { height: 420px; }
-
-  .shoe {
-    top: 29%;
-    width: 270px;
-    margin-left: -135px;
+  .product-card{
+    width:260px;
+    height:320px;
   }
-
-  .arrow {
-    width: 37px;
-    height: 37px;
-  }
-
-  .details {
-    margin: 0 22px 34px;
-    display: block;
-  }
-
-  .product-buy {
-    width: 100%;
-    margin-top: 23px;
-  }
-
-  .price { text-align: left; }
-
-  .options {
-    grid-template-columns: 46px 1fr 34px 115px;
-  }
-
-  footer {
-    padding: 25px 22px;
-    flex-wrap: wrap;
-  }
-
-  footer span:nth-child(2) { display: none; }
+  .intro h1{font-size:67px}
 }
-
-@media(prefers-reduced-motion:reduce) {
-  *, *:before, *:after {
-    transition-duration: .01ms !important;
-    animation-duration: .01ms !important;
+@media(max-width:640px){
+  .topbar{font-size:8px;height:30px}
+  .header{height:68px;padding:0 20px}
+  .logo{font-size:22px}
+  .menu,.season,.header-right .icon-button{display:none}
+  .intro{padding-top:40px}
+  .kicker{font-size:8px}
+  .intro h1{
+    font-size:clamp(42px,12vw,70px);
+    margin-top:17px;
+  }
+  .intro p{font-size:12px;padding:0 14px}
+  .stage-wrap{height:410px;min-height:0}
+  .vertical-label,.series-marker{display:none}
+  .product-card{
+    width:210px;
+    height:268px;
+    top:48%;
+  }
+  .stage-control{
+    width:39px;
+    height:39px;
+    top:50%;
+    font-size:22px;
+  }
+  .stage-control.prev{left:10px}
+  .stage-control.next{right:10px}
+  .stage-bottom{
+    bottom:12px;
+    font-size:9px;
+    gap:12px;
+  }
+  .stage-bottom .hr{width:14px}
+  .photo-code{
+    font-size:8px;
+    left:12px;
+    bottom:12px;
+  }
+  .details{
+    display:flex;
+    flex-direction:column;
+    padding:22px 0 35px;
+    margin:0 22px;
+    gap:12px;
+  }
+  .detail-name{font-size:38px;margin-top:8px}
+  .detail-copy{font-size:12px}
+  .detail-features{margin-top:15px}
+  .purchase{padding-top:5px}
+  .price{
+    text-align:left;
+    margin-bottom:13px;
+    font-size:27px;
+  }
+  .selectors{justify-content:flex-start;gap:10px}
+  .swatches{margin-right:auto}
+  .selectors select{width:128px}
+  .trust{text-align:left}
+  .lower{
+    padding:31px 23px;
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .lower strong{font-size:21px}
+  .footer{
+    padding:23px;
+    gap:10px;
+    flex-wrap:wrap;
+    font-size:9px;
+  }
+  .footer span:nth-child(2){display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
   }
 }
 </style>
 </head>
 
 <body>
-
-<div class="shell">
-
-<header class="nav">
-  <a class="brand" href="#">
-    MEYAKHAIL<span>®</span>
-  </a>
-
-  <nav class="navlinks">
-    <a class="active" href="#collection">COLLECTION</a>
-    <a href="#story">OUR STORY</a>
-  </nav>
-
-  <div class="right">
-    <span class="season">NEW SEASON / 2026</span>
-    <button id="cartBtn" class="cart">
-      BAG <b id="cartCount">00</b>
-    </button>
-  </div>
-</header>
-
-<main id="collection">
-
-<div class="eyebrow">
-  <span class="line"></span>
-  THE FOOTWEAR EDIT
-  <span class="line"></span>
-</div>
-
-<h1>THE COLLECTION<span class="period">.</span></h1>
-
-<p class="subtitle">
-  A new perspective on everyday movement.
-</p>
-
-<div class="stage" id="stage">
-  <div class="stage-floor"></div>
-  <div class="shoe-rail" id="rail"></div>
-  <div class="focus-halo"></div>
-  <div class="floor-line"></div>
-
-  <div class="hint">
-    <span>←</span>
-    DRAG TO EXPLORE
-    <span>→</span>
+<div class="site" id="home">
+  <div class="topbar">
+    <span class="dot"></span>
+    NEW SEASON 2026
+    <span class="dot"></span>
+    A DIFFERENT WAY TO MOVE
   </div>
 
-  <button class="arrow prev" id="prev">‹</button>
-  <button class="arrow next" id="next">›</button>
-</div>
+  <header class="header">
+    <a class="logo" href="#home" aria-label="Meyakhail home">
+      MEYAKHAIL<sup>®</sup>
+    </a>
 
-<section class="details" id="details">
+    <nav class="menu" aria-label="Main menu">
+      <a class="active" href="#collection">THE COLLECTION</a>
+      <a href="#story">OUR STORY</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
 
-  <div class="product-about">
-    <div class="counter" id="counter">01 / 06</div>
-    <div class="product-type" id="type">ESSENTIAL SERIES</div>
-    <h2 id="productName">URBAN RUNNER</h2>
-    <p id="description">
-      Built for the rhythm of your day.
-    </p>
-  </div>
-
-  <div class="product-buy">
-
-    <div class="price" id="price">$ 129.00</div>
-
-    <div class="options">
-      <span>COLOR</span>
-      <div class="swatches" id="swatches"></div>
-
-      <span>SIZE</span>
-      <select id="size">
-        <option value="">SELECT SIZE</option>
-        <option>EU 39</option>
-        <option>EU 40</option>
-        <option>EU 41</option>
-        <option>EU 42</option>
-        <option>EU 43</option>
-        <option>EU 44</option>
-      </select>
+    <div class="header-right">
+      <span class="season">EST. KABUL / 2026</span>
+      <button class="icon-button" id="viewButton" aria-label="View current product in detail">↗</button>
+      <button class="bag-button" id="openBag">
+        BAG <span class="bag-count" id="bagCount">00</span>
+      </button>
     </div>
+  </header>
 
-    <button class="add" id="add">
-      ADD TO BAG <span>↗</span>
-    </button>
+  <main id="collection">
+    <section class="intro">
+      <div class="kicker">THE FOOTWEAR STUDIO</div>
+      <h1>THE <em>EDIT.</em></h1>
+      <p>Six silhouettes. Endless ways to move. Find your pair.</p>
+    </section>
 
-  </div>
-</section>
+    <section class="stage-wrap" aria-label="Interactive shoe collection">
+      <div class="series-marker">DESIGNED FOR MOVEMENT / 001</div>
+      <div class="vertical-label">MEYAKHAIL STUDIO · INTERACTIVE EDITION</div>
 
-</main>
+      <div class="carousel" id="carousel" aria-label="Swipe or use arrow keys to browse shoes"></div>
 
-<footer id="story">
-  <span>MEYAKHAIL / DESIGNED TO MOVE</span>
-  <span>SCROLL LESS. EXPERIENCE MORE.</span>
-  <span>© 2026 MEYAKHAIL</span>
-</footer>
+      <button class="stage-control prev" id="prev" aria-label="Previous shoe">‹</button>
+      <button class="stage-control next" id="next" aria-label="Next shoe">›</button>
 
+      <div class="stage-bottom">
+        <span>←</span>
+        <span>DRAG TO EXPLORE</span>
+        <div class="hr"></div>
+        <div class="dots" id="dots" aria-label="Product navigation"></div>
+        <span>→</span>
+      </div>
+    </section>
+
+    <section class="details" aria-live="polite" aria-atomic="true">
+      <div>
+        <div class="detail-eyebrow" id="productCount">
+          01 / 06 · THE EVERYDAY COLLECTION
+        </div>
+        <h2 class="detail-name" id="productName">EVERYDAY RUNNER</h2>
+        <p class="detail-copy" id="productDesc">Made for wherever today takes you.</p>
+
+        <div class="detail-features">
+          <span>✳ <strong>COMFORT FIRST</strong></span>
+          <span>◇ <strong>EVERYDAY WEAR</strong></span>
+        </div>
+      </div>
+
+      <div class="purchase">
+        <div class="price" id="productPrice">$129.00</div>
+
+        <div class="selectors">
+          <label class="selector-label">COLOR</label>
+          <div class="swatches" id="colors"></div>
+
+          <label class="selector-label" for="size">SIZE</label>
+          <select id="size">
+            <option value="">SELECT SIZE</option>
+            <option>EU 39</option>
+            <option>EU 40</option>
+            <option>EU 41</option>
+            <option>EU 42</option>
+            <option>EU 43</option>
+            <option>EU 44</option>
+          </select>
+        </div>
+
+        <button class="buy-button" id="addToBag">
+          ADD TO BAG <span aria-hidden="true">↗</span>
+        </button>
+        <div class="trust">A curated design concept · Prices are sample data</div>
+      </div>
+    </section>
+  </main>
+
+  <section id="story" class="lower">
+    <div>
+      <strong>Movement is a mindset.</strong>
+      <p>Every pair tells a story. The footwear studio celebrates shape, attitude and the freedom to choose your own path.</p>
+    </div>
+    <a href="#collection">EXPLORE THE COLLECTION ↗</a>
+  </section>
+
+  <footer id="contact" class="footer">
+    <span>MEYAKHAIL® / MADE TO MOVE</span>
+    <span>KABUL, KARTE CHAR, SECOND STREET</span>
+    <span>© 2026 MEYAKHAIL</span>
+  </footer>
 </div>
 
-<div id="toast" class="toast"></div>
+<div class="noise" aria-hidden="true"></div>
+<div class="backdrop" id="backdrop"></div>
 
-<aside id="bagPanel" class="bag-panel">
-  <div class="bag-head">
-    <h2>YOUR BAG</h2>
-    <button id="closeBag">×</button>
+<aside class="drawer" id="drawer" aria-label="Shopping bag" aria-modal="true" role="dialog" inert>
+  <div class="drawer-head">
+    <h2>YOUR BAG <span id="bagHeadingCount">(0)</span></h2>
+    <button id="closeBag" aria-label="Close shopping bag">×</button>
   </div>
-
-  <div id="bagItems" class="bag-items">
-    Your bag is empty.
-  </div>
-
-  <div class="bag-foot">
-    <span>SUBTOTAL</span>
-    <strong id="total">$0.00</strong>
+  <div class="bag-list" id="bagList"></div>
+  <div class="drawer-foot">
+    <div class="total-row">
+      <span>SUBTOTAL</span>
+      <strong id="bagTotal">$0.00</strong>
+    </div>
+    <button class="checkout" id="checkout">CONTINUE ↗</button>
+    <div class="checkout-note">
+      Demo storefront. Checkout and payment are not connected.
+      Contact the store before placing any real order.
+    </div>
   </div>
 </aside>
 
-<div id="overlay" class="overlay"></div>
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Product image" inert>
+  <button class="zoom-close" id="closeZoom" aria-label="Close image preview">×</button>
+  <figure>
+    <img id="zoomImg" alt="Selected shoe enlarged">
+    <figcaption id="zoomName"></figcaption>
+    <small>EDITORIAL PRODUCT PREVIEW · NOT A 360° MODEL</small>
+  </figure>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
 
 <script>
-
-const products = [
+const products=[
   {
-    name: 'URBAN RUNNER',
-    type: 'ESSENTIAL SERIES',
-    description: 'Built for the rhythm of your day.',
-    price: 129,
-    base: '#d5d8c9',
-    accent: '#a8b09a',
-    sole: '#f2f1e9',
-    details: '#f8f8f3',
-    colors: ['#d5d8c9','#25272a','#e7ab75']
+    id:'MK-001',
+    name:'URBAN PULSE',
+    series:'THE EVERYDAY COLLECTION',
+    desc:'Built for the rhythm of ordinary days. Nothing ordinary about the way it feels.',
+    price:129,
+    photo:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85',
+    bg:'#e9d3cb',
+    colors:['#cb584d','#303937','#d3c7b4'],
+    label:'SIGNATURE'
   },
   {
-    name: 'VELOCITY 01',
-    type: 'PERFORMANCE SERIES',
-    description: 'The next step begins here.',
-    price: 159,
-    base: '#c8d7db',
-    accent: '#7c98a6',
-    sole: '#f5f6f2',
-    details: '#e9eff1',
-    colors: ['#c8d7db','#20272d','#ee7955']
+    id:'MK-002',
+    name:'THE CLASSIC',
+    series:'THE ORIGINALS',
+    desc:'Timeless lines. New energy. An everyday staple, reinvented.',
+    price:139,
+    photo:'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=85',
+    bg:'#e6e2d7',
+    colors:['#d9cdb8','#2e302f','#ac7169'],
+    label:'CLASSIC'
   },
   {
-    name: 'NIGHT SHIFT',
-    type: 'STREET SERIES',
-    description: 'Made to stand out after dark.',
-    price: 145,
-    base: '#272a2d',
-    accent: '#6b757a',
-    sole: '#e4e3df',
-    details: '#a7acaa',
-    colors: ['#272a2d','#bfc7bb','#99604c']
+    id:'MK-003',
+    name:'AIR MOTION',
+    series:'THE PERFORMANCE EDIT',
+    desc:'Designed to keep up. Light on your feet, bold in your stride.',
+    price:165,
+    photo:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=900&q=85',
+    bg:'#d9e3da',
+    colors:['#aab99f','#373a3b','#d5ab91'],
+    label:'BESTSELLER'
   },
   {
-    name: 'BOLD MOTION',
-    type: 'LIMITED EDITION',
-    description: 'Move differently. Feel everything.',
-    price: 179,
-    base: '#e7a15d',
-    accent: '#a44c36',
-    sole: '#efece1',
-    details: '#f3c798',
-    colors: ['#e7a15d','#a1a5bd','#505f5a']
+    id:'MK-004',
+    name:'OFF THE GRID',
+    series:'THE STREET COLLECTION',
+    desc:'Fresh perspective for every corner, every street and every step.',
+    price:155,
+    photo:'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=900&q=85',
+    bg:'#d8dfe3',
+    colors:['#bbc9d0','#2e3031','#ece8df'],
+    label:'NEW DROP'
   },
   {
-    name: 'TERRAIN LOW',
-    type: 'OUTDOOR SERIES',
-    description: 'Confidence on every surface.',
-    price: 169,
-    base: '#8c9778',
-    accent: '#525b45',
-    sole: '#e4dbc7',
-    details: '#c2c9aa',
-    colors: ['#8c9778','#bda18d','#303a40']
+    id:'MK-005',
+    name:'TERRAIN ONE',
+    series:'THE OUTDOOR EDIT',
+    desc:'Take the long route. Every surface is part of the story.',
+    price:169,
+    photo:'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=85',
+    bg:'#e6d8c4',
+    colors:['#9a9d80','#bb9a80','#333d42'],
+    label:'EXPLORE'
   },
   {
-    name: 'CLOUD WALK',
-    type: 'EVERYDAY SERIES',
-    description: 'Light by design. Effortless by nature.',
-    price: 139,
-    base: '#e6ddd2',
-    accent: '#b9ada1',
-    sole: '#fafaf5',
-    details: '#ffffff',
-    colors: ['#e6ddd2','#d9c5de','#a6c7c2']
+    id:'MK-006',
+    name:'CLOUD NINE',
+    series:'THE MINIMAL EDIT',
+    desc:'Quiet confidence. Effortless form. Designed for all-day comfort.',
+    price:149,
+    photo:'https://images.unsplash.com/photo-1605348532760-6753d2c43329?auto=format&fit=crop&w=900&q=85',
+    bg:'#e6e0df',
+    colors:['#e6ddcf','#a8b9bf','#414546'],
+    label:'ESSENTIAL'
   }
 ];
 
-const rail = document.querySelector('#rail');
-const nameEl = document.querySelector('#productName');
-const typeEl = document.querySelector('#type');
-const descEl = document.querySelector('#description');
-const priceEl = document.querySelector('#price');
-const counterEl = document.querySelector('#counter');
-const swatchesEl = document.querySelector('#swatches');
+const $=s=>document.querySelector(s);
+const money=n=>'$'+n.toFixed(2);
+const clampIndex=n=>(n+products.length)%products.length;
 
-let selected = 2;
-let variants = {};
-let bag = [];
+let active=2;
+let colorPick=0;
+let items=[];
 
-function svgShoe(p, i) {
-  let b = variants[i] || p.base;
+try{
+  const stored=JSON.parse(localStorage.getItem('meyakhail-demo-bag')||'[]');
+  if(Array.isArray(stored)){
+    items=stored.filter(a=>
+      products.some(p=>p.id===a.id)&&Number.isFinite(a.price)
+    );
+  }
+}catch{}
 
-  return `
-  <svg viewBox="0 0 560 320"
-       role="img"
-       aria-label="${p.name} shoe"
-       xmlns="http://www.w3.org/2000/svg">
+const carousel=$('#carousel');
+let cards=[];
 
-    <defs>
-      <linearGradient id="body${i}" x1=".14" y1="0" x2=".85" y2="1">
-        <stop stop-color="${p.details}"/>
-        <stop offset=".45" stop-color="${b}"/>
-        <stop offset="1" stop-color="${p.accent}"/>
-      </linearGradient>
+function init(){
+  products.forEach((p,i)=>{
+    const card=document.createElement('div');
+    card.className='product-card';
+    card.tabIndex=0;
+    card.setAttribute('role','button');
+    card.setAttribute('aria-label','Select '+p.name);
 
-      <linearGradient id="sole${i}" x1="0" y1="0" x2="0" y2="1">
-        <stop stop-color="${p.sole}"/>
-        <stop offset="1" stop-color="#a5a59b"/>
-      </linearGradient>
-
-      <pattern id="mesh${i}"
-               width="8"
-               height="8"
-               patternUnits="userSpaceOnUse">
-        <path d="M0 8L8 0 M-2 2L2 -2"
-              stroke="#fff"
-              opacity=".16"
-              stroke-width="1.5"/>
-      </pattern>
-    </defs>
-
-    <ellipse cx="283" cy="275"
-             rx="224" ry="17"
-             fill="#000" opacity=".07"/>
-
-    <g transform="rotate(-7 275 160)">
-
-      <path d="M47 192 C68 182 92 183 118 169
-               L170 98 C195 79 217 86 243 104
-               L292 149 C322 167 364 168 393 169
-               L489 179 Q519 183 525 207
-               L521 238 Q514 260 478 261
-               L117 258 C88 256 67 246 49 234
-               Q31 217 47 192Z"
-            fill="url(#body${i})"
-            stroke="#64645d"
-            stroke-opacity=".25"
-            stroke-width="3"/>
-
-      <path d="M77 180L170 96
-               Q195 79 219 99
-               L251 125 L195 190 L85 210Z"
-            fill="${p.accent}"
-            opacity=".85"/>
-
-      <path d="M199 115Q236 95 266 143
-               L313 167L258 211L181 175Z"
-            fill="${b}"/>
-
-      <path d="M199 115Q236 95 266 143
-               L313 167L258 211L181 175Z"
-            fill="url(#mesh${i})"/>
-
-      <path d="M112 173Q149 168 195 191
-               Q224 208 274 192
-               Q332 172 405 184"
-            fill="none"
-            stroke="${p.details}"
-            stroke-width="9"
-            stroke-linecap="round"
-            opacity=".85"/>
-
-      <path d="M278 174L319 155L361 181L392 184"
-            stroke="${p.accent}"
-            stroke-width="26"
-            fill="none"
-            stroke-linejoin="round"
-            opacity=".7"/>
-
-      <path d="M276 177L324 176L355 194"
-            stroke="${p.details}"
-            stroke-width="8"
-            fill="none"
-            stroke-linecap="round"/>
-
-      <path d="M42 212Q61 226 125 225
-               L423 224Q491 222 523 206
-               L525 238Q508 270 449 269
-               L115 269Q63 269 42 246Z"
-            fill="url(#sole${i})"
-            stroke="#99988e"
-            stroke-width="2"/>
-
-      <path d="M54 250Q85 272 140 271
-               L450 272Q503 270 519 246"
-            fill="none"
-            stroke="#5f5e56"
-            stroke-width="8"/>
-
-      <path d="M78 254L477 254"
-            stroke="#fff"
-            stroke-opacity=".7"
-            stroke-width="3"/>
-
-      <path d="M222 143L276 154
-               M213 155L263 168
-               M204 167L251 182
-               M195 178L238 195"
-            stroke="${p.details}"
-            stroke-width="7"
-            stroke-linecap="round"/>
-
-      <path d="M220 141L274 153
-               M210 153L261 167
-               M201 165L248 180"
-            stroke="#777"
-            stroke-opacity=".2"
-            stroke-width="1.7"/>
-
-      <path d="M92 176L112 147"
-            stroke="${p.details}"
-            stroke-width="6"/>
-
-      <path d="M91 182L106 184"
-            stroke="#ffffff"
-            stroke-opacity=".7"
-            stroke-width="4"/>
-
-      <path d="M422 176Q475 172 494 186"
-            fill="none"
-            stroke="${p.details}"
-            stroke-width="5"
-            stroke-linecap="round"/>
-
-      <text x="370" y="213"
-            font-size="12"
-            font-family="Arial"
-            font-weight="bold"
-            fill="#fff"
-            letter-spacing="3">M.</text>
-
-    </g>
-  </svg>`;
-}
-
-function render() {
-
-  rail.innerHTML = products.map((p, i) => `
-    <div class="shoe"
-         data-index="${i}"
-         aria-label="View ${p.name}">
-      ${svgShoe(p, i)}
-    </div>
-  `).join('');
-
-  const nodes = [...document.querySelectorAll('.shoe')];
-
-  nodes.forEach((el, i) => {
-    let delta = i - selected;
-    let abs = Math.abs(delta);
-
-    el.style.transform = `
-      translate3d(
-        calc(${delta} * min(20vw, 280px)),
-        ${abs * 16}px,
-        ${-abs * 85}px
-      )
-      rotateY(${-delta * 13}deg)
-      rotateZ(${delta * 2}deg)
-      scale(${Math.max(.53, 1 - abs * .18)})
+    card.innerHTML=`
+      <div class="photo" style="--product-bg:${p.bg}">
+        <img alt="${p.name} footwear photograph" src="${p.photo}" loading="${i===active?'eager':'lazy'}">
+        <div class="fallback">${p.name}<br>PRODUCT IMAGE</div>
+        <span class="tag">${p.label}</span>
+        <span class="photo-code">${p.id} / STUDIO</span>
+        <span class="photo-arrow">↗</span>
+      </div>
+      <div class="card-shadow"></div>
     `;
 
-    el.style.opacity = abs > 3 ? 0 : Math.max(.23, 1 - abs * .23);
-    el.style.filter = abs ? 'saturate(.65)' : 'none';
-    el.style.zIndex = 20 - abs;
-    el.classList.toggle('selected', i === selected);
+    const img=card.querySelector('img');
+    img.onload=()=>img.classList.add('loaded');
+    img.onerror=()=>{img.style.display='none'};
 
-    el.addEventListener('click', () => choose(i));
+    card.addEventListener('click',()=>{
+      if(!wasDragged){
+        if(i===active)openZoom();
+        else select(i);
+      }
+    });
+
+    card.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){
+        e.preventDefault();
+        if(i===active)openZoom();
+        else select(i);
+      }
+    });
+
+    carousel.appendChild(card);
+    cards.push(card);
+  });
+}
+
+function layout(){
+  const mobile=innerWidth<640;
+  const tablet=innerWidth<950;
+  const step=mobile?143:tablet?200:262;
+
+  cards.forEach((card,i)=>{
+    let delta=i-active;
+    const count=products.length;
+
+    if(delta>count/2)delta-=count;
+    if(delta< -count/2)delta+=count;
+
+    const d=Math.abs(delta);
+    const scale=d===0?1:d===1?.8:d===2?.65:.52;
+    const rotation=delta===0?0:delta<0?13:-13;
+
+    card.style.transform=`
+      translate3d(calc(-50% + ${delta*step}px),-50%,${-d*135}px)
+      rotateY(${rotation}deg)
+      rotateZ(${delta*2.5}deg)
+      scale(${scale})
+    `;
+
+    card.style.zIndex=20-d;
+    card.style.opacity=d>2?.17:d===2?.5:d===1?.76:1;
+    card.style.pointerEvents=d>2?'none':'auto';
+    card.classList.toggle('current',!d);
+    card.setAttribute('aria-current',d===0?'true':'false');
+  });
+}
+
+function select(n){
+  active=clampIndex(n);
+  colorPick=0;
+  $('#size').value='';
+
+  const p=products[active];
+  $('#productCount').textContent=
+    `${String(active+1).padStart(2,'0')} / 0${products.length} · ${p.series}`;
+  $('#productName').textContent=p.name;
+  $('#productDesc').textContent=p.desc;
+  $('#productPrice').textContent=money(p.price);
+  $('#colors').innerHTML='';
+
+  p.colors.forEach((c,i)=>{
+    const b=document.createElement('button');
+    b.className='swatch'+(colorPick===i?' selected':'');
+    b.style.background=c;
+    b.setAttribute('aria-label','Select color '+(i+1));
+    b.setAttribute('aria-pressed',colorPick===i?'true':'false');
+
+    b.onclick=()=>{
+      colorPick=i;
+      $('#colors').querySelectorAll('button').forEach((el,j)=>{
+        el.classList.toggle('selected',i===j);
+        el.setAttribute('aria-pressed',i===j?'true':'false');
+      });
+    };
+
+    $('#colors').appendChild(b);
   });
 
-  let p = products[selected];
-
-  nameEl.textContent = p.name;
-  typeEl.textContent = p.type;
-  descEl.textContent = p.description;
-  priceEl.textContent = `$ ${p.price.toFixed(2)}`;
-
-  counterEl.textContent =
-    `${String(selected + 1).padStart(2, '0')} / ` +
-    `${String(products.length).padStart(2, '0')}`;
-
-  swatchesEl.innerHTML = p.colors.map((c, i) => `
-    <button class="swatch ${
-      c === (variants[selected] || p.base) ? 'active' : ''
-    }"
-    style="background:${c}"
-    aria-label="Color ${i + 1}"
-    data-color="${c}">
-    </button>
+  $('#dots').innerHTML=products.map((_,i)=>`
+    <button class="${i===active?'on':''}"
+    aria-label="Show product ${i+1}"
+    data-go="${i}"></button>
   `).join('');
 
-  swatchesEl.querySelectorAll('button').forEach(b => {
-    b.onclick = () => {
-      variants[selected] = b.dataset.color;
-      render();
-    };
-  });
+  $('#dots').querySelectorAll('button').forEach(b=>
+    b.addEventListener('click',()=>select(+b.dataset.go))
+  );
+
+  layout();
 }
 
-function choose(i) {
-  selected = (i + products.length) % products.length;
-  render();
-}
+$('#prev').onclick=()=>select(active-1);
+$('#next').onclick=()=>select(active+1);
 
-document.querySelector('#prev').onclick =
-  () => choose(selected - 1);
+let startX=null;
+let wasDragged=false;
 
-document.querySelector('#next').onclick =
-  () => choose(selected + 1);
-
-window.addEventListener('keydown', e => {
-  if (e.key === 'ArrowLeft') choose(selected - 1);
-  if (e.key === 'ArrowRight') choose(selected + 1);
+carousel.addEventListener('pointerdown',e=>{
+  startX=e.clientX;
+  wasDragged=false;
+  carousel.classList.add('grabbing');
 });
 
-let start = null;
-const stage = document.querySelector('#stage');
+carousel.addEventListener('pointerup',e=>{
+  carousel.classList.remove('grabbing');
 
-stage.addEventListener('pointerdown', e => {
-  start = e.clientX;
-});
-
-stage.addEventListener('pointerup', e => {
-  if (start !== null && Math.abs(e.clientX - start) > 40) {
-    choose(selected + (e.clientX < start ? 1 : -1));
+  if(startX!==null&&Math.abs(e.clientX-startX)>45){
+    wasDragged=true;
+    select(active+(e.clientX<startX?1:-1));
+    setTimeout(()=>wasDragged=false,80);
   }
-  start = null;
+  startX=null;
 });
 
-const toast = document.querySelector('#toast');
-let timer;
+carousel.addEventListener('pointercancel',()=>{
+  startX=null;
+  carousel.classList.remove('grabbing');
+});
 
-function notify(msg) {
-  toast.textContent = msg;
-  toast.classList.add('show');
-  clearTimeout(timer);
-  timer = setTimeout(() => toast.classList.remove('show'), 2600);
+addEventListener('resize',layout);
+
+function toast(s){
+  const el=$('#toast');
+  el.textContent=s;
+  el.classList.add('show');
+  clearTimeout(toast.t);
+  toast.t=setTimeout(()=>el.classList.remove('show'),2500);
 }
 
-document.querySelector('#add').onclick = () => {
+function save(){
+  try{
+    localStorage.setItem('meyakhail-demo-bag',JSON.stringify(items));
+  }catch{}
+  renderBag();
+}
 
-  let size = document.querySelector('#size').value;
+function renderBag(){
+  $('#bagCount').textContent=String(items.length).padStart(2,'0');
+  $('#bagHeadingCount').textContent='('+items.length+')';
+  $('#bagTotal').textContent=money(items.reduce((t,a)=>t+a.price,0));
+  $('#bagList').replaceChildren();
 
-  if (!size) {
-    notify('Please select a size first.');
+  if(!items.length){
+    $('#bagList').innerHTML=
+      '<p class="empty">Your bag is empty.<br>Discover your next favorite pair.</p>';
     return;
   }
 
-  bag.push({
-    name: products[selected].name,
-    price: products[selected].price,
-    size
+  items.forEach((item,i)=>{
+    const row=document.createElement('div');
+    row.className='bag-row';
+    const p=products.find(p=>p.id===item.id);
+
+    row.innerHTML=`
+      <img src="${p.photo}" alt="${p.name}">
+      <div>
+        <h3>${p.name}</h3>
+        <p>${item.size} · COLOR ${item.color+1}</p>
+        <button aria-label="Remove ${p.name}">REMOVE</button>
+      </div>
+      <strong>${money(item.price)}</strong>
+    `;
+
+    row.querySelector('button').onclick=()=>{
+      items.splice(i,1);
+      save();
+    };
+
+    $('#bagList').appendChild(row);
+  });
+}
+
+function openBag(){
+  closeZoom();
+  $('#backdrop').classList.add('open');
+  $('#drawer').classList.add('open');
+  $('#drawer').inert=false;
+  $('#closeBag').focus();
+}
+
+function closeBag(){
+  $('#backdrop').classList.remove('open');
+  $('#drawer').classList.remove('open');
+  $('#drawer').inert=true;
+}
+
+$('#openBag').onclick=openBag;
+$('#closeBag').onclick=closeBag;
+$('#backdrop').onclick=closeBag;
+
+$('#addToBag').onclick=()=>{
+  const size=$('#size').value;
+
+  if(!size){
+    toast('Please select your size first.');
+    $('#size').focus();
+    return;
+  }
+
+  const p=products[active];
+  items.push({
+    id:p.id,
+    size,
+    color:colorPick,
+    price:p.price
   });
 
-  document.querySelector('#cartCount').textContent =
-    String(bag.length).padStart(2, '0');
-
-  notify(`${products[selected].name} added to your bag`);
-
-  updateBag();
+  save();
+  toast(p.name+' added to your bag');
+  openBag();
 };
 
-const panel = document.querySelector('#bagPanel');
-const overlay = document.querySelector('#overlay');
+$('#checkout').onclick=()=>
+  toast('Demo only. Checkout is not yet connected.');
 
-function openBag(open) {
-  panel.classList.toggle('open', open);
-  overlay.classList.toggle('open', open);
+function openZoom(){
+  closeBag();
+  const p=products[active];
+
+  $('#zoomImg').src=p.photo;
+  $('#zoomImg').alt=p.name+' enlarged photo';
+  $('#zoomName').textContent=p.name;
+  $('#zoom').classList.add('open');
+  $('#zoom').inert=false;
+  $('#closeZoom').focus();
 }
 
-document.querySelector('#cartBtn').onclick =
-  () => openBag(true);
-
-document.querySelector('#closeBag').onclick =
-  () => openBag(false);
-
-overlay.onclick = () => openBag(false);
-
-function updateBag() {
-
-  document.querySelector('#bagItems').innerHTML = bag.length
-    ? bag.map((p, i) => `
-      <div class="bag-item">
-        <div>
-          <strong>${p.name}</strong>
-          <p>${p.size}</p>
-        </div>
-        <div>
-          $${p.price.toFixed(2)}
-          <br>
-          <button
-            style="border:0;background:none;text-decoration:underline;color:#888"
-            onclick="removeItem(${i})">
-            Remove
-          </button>
-        </div>
-      </div>
-    `).join('')
-    : 'Your bag is empty.';
-
-  document.querySelector('#total').textContent =
-    '$' + bag.reduce((s, p) => s + p.price, 0).toFixed(2);
+function closeZoom(){
+  $('#zoom').classList.remove('open');
+  $('#zoom').inert=true;
 }
 
-window.removeItem = i => {
-  bag.splice(i, 1);
+$('#viewButton').onclick=openZoom;
+$('#closeZoom').onclick=closeZoom;
 
-  document.querySelector('#cartCount').textContent =
-    String(bag.length).padStart(2, '0');
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closeZoom();
+    closeBag();
+    return;
+  }
 
-  updateBag();
-};
+  if(
+    $('#zoom').classList.contains('open')||
+    $('#drawer').classList.contains('open')||
+    ['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)
+  )return;
 
-render();
+  if(e.key==='ArrowLeft')select(active-1);
+  if(e.key==='ArrowRight')select(active+1);
+});
 
+init();
+select(active);
+renderBag();
 </script>
 </body>
 </html>
